@@ -1,0 +1,11 @@
+.DS_Store
+*.swp
+node_modules/
+target/
+target-e2e/
+src/
+src-tauri/
+crates/
+artifacts/
+*.dmg
+*.zip

@@ -1,0 +1,1216 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SSHAdmin 使用手册</title>
+<style>
+:root{--bg:#f5f7fa;--ink:#202b3b;--muted:#617086;--line:#dce3ec;--blue:#1760ac;--nav:252px}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.85 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}a{color:var(--blue);text-underline-offset:3px}aside{position:fixed;inset:0 auto 0 0;width:var(--nav);padding:30px 18px;background:#152a43;color:#fff;overflow:auto}.brand{font-size:24px;font-weight:750;letter-spacing:.3px}.sub{font-size:13px;color:#b5c8df;margin:5px 0 23px}nav a{display:flex;gap:10px;color:#dce8f6;padding:8px 9px;margin:3px 0;border-radius:7px;font-size:13px;line-height:1.7;text-decoration:none}nav a:hover,nav a:focus{background:#294565;color:white}nav span{color:#8cabcf;font:12px/1.9 ui-monospace,monospace;flex-shrink:0}.nav-footer{margin:26px 9px 0;font-size:12px;color:#aac1dc}.nav-footer button{border:1px solid #58728e;background:none;border-radius:6px;padding:6px 10px;color:white;cursor:pointer}main{margin-left:var(--nav);padding:44px 52px 80px;max-width:1320px}header{margin-bottom:30px;border-bottom:1px solid var(--line);padding-bottom:26px}.eyebrow{color:var(--blue);font-size:12px;font-weight:700;letter-spacing:1.3px}h1{font-size:38px;line-height:1.4;margin:8px 0 12px;letter-spacing:-.7px}.lead{color:var(--muted);font-size:17px;margin:0}.meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}.meta span{background:#e7edf6;color:#416080;border-radius:5px;padding:2px 9px;font-size:12px}article>p:first-child{font-size:13px;color:var(--muted)}h2{font-size:25px;line-height:1.5;margin:48px 0 22px;padding-top:12px;border-top:2px solid #d6e2ef}h3{font-size:19px;margin:30px 0 12px;line-height:1.6}p{margin:12px 0}ul,ol{padding-left:25px}li{margin:6px 0}strong{font-weight:650}code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:#e8edf4;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}pre{position:relative;background:#192b40;color:#edf4fc;padding:22px 20px;border-radius:9px;overflow:auto;line-height:1.75;font-size:14px;margin:15px 0 20px}pre code{background:none;color:inherit;padding:0;border-radius:0;overflow-wrap:normal}pre button{position:absolute;right:9px;top:8px;color:#c7d8ed;background:#29435f;border:1px solid #46627e;border-radius:4px;font-size:11px;padding:3px 7px;cursor:pointer}.table-wrap{overflow:auto;margin:14px 0 23px;border:1px solid var(--line);border-radius:8px;background:#fff}table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.75}th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#eaf0f7;font-weight:650;white-space:nowrap}tr:last-child td{border-bottom:0}tbody tr:nth-child(even){background:#f8fafc}td:first-child{min-width:160px}td code{font-size:12px}a[id]{display:block;scroll-margin-top:24px}blockquote{border-left:3px solid #4e84ba;margin:15px 0;padding:5px 15px;background:#eef4fb}.end{margin-top:45px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);padding-top:15px}
+@media(max-width:1000px){:root{--nav:220px}main{padding:30px 25px}h1{font-size:32px}}@media(max-width:720px){aside{position:static;width:auto;padding:20px}nav{display:grid;grid-template-columns:1fr 1fr}nav a{font-size:12px}.nav-footer{display:none}main{margin:0;padding:25px 18px}h1{font-size:30px}h2{font-size:23px}pre{font-size:12px}th,td{padding:9px 10px}}
+@media print{aside,pre button{display:none}body{background:white;font-size:11pt}main{margin:0;padding:0;max-width:none}h2,h3{break-after:avoid}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f3f5f7;color:#111;font-size:9pt}table{font-size:9pt}.table-wrap{overflow:visible}tr{break-inside:avoid}header{padding-bottom:12px}h1{font-size:26pt}a{color:inherit}a[id]{height:0}}
+</style></head><body>
+<aside><div class="brand">SSHAdmin</div><div class="sub">本地使用手册 · 0.1.0</div><nav aria-label="章节目录"><a href="#quickstart"><span>01</span>最常用的操作</a>
+<a href="#concepts"><span>02</span>先分清几个概念</a>
+<a href="#hosts"><span>03</span>识别、新增、编辑、删除</a>
+<a href="#credentials"><span>04</span>密码、私钥与凭据管理</a>
+<a href="#terminal"><span>05</span>标签、分屏、快捷键与历史</a>
+<a href="#tmux"><span>06</span>关闭软件后继续运行与重新接入</a>
+<a href="#cli"><span>07</span>全部 SSHAdmin 自定义命令</a>
+<a href="#ai"><span>08</span>让本机 AI 使用服务器</a>
+<a href="#recipes"><span>09</span>常用操作示例</a>
+<a href="#settings"><span>10</span>设置、备份与数据位置</a>
+<a href="#troubleshooting"><span>11</span>常见问题与错误处理</a>
+<a href="#maintenance"><span>12</span>更新、迁移、卸载与功能边界</a>
+<a href="#references"><span>13</span>核验范围与进一步阅读</a></nav><div class="nav-footer">⌘F 查找功能或错误码<br>所有内容均可离线阅读<br><br><button onclick="window.print()">打印 / 另存 PDF</button><br><br><a href="index.html" style="color:#dce8f6">← 返回官网</a></div></aside>
+<main><header><div class="eyebrow">USER GUIDE / 本机操作指南</div><h1>SSHAdmin 使用手册</h1><p class="lead">管理连接、操作终端、保留任务，让本机 AI 使用你的服务器。</p><div class="meta"><span>macOS</span><span>2026-10-17 核对</span><span>13 个章节</span><span>完整命令参考</span></div></header><article>
+<p>适用：macOS 版 SSHAdmin 0.1.0，CLI 协议版本 1。核对日期：2026-10-17。</p>
+<p>这是一份日常操作手册。先看“快速开始”，遇到具体问题再查对应章节。命令以当前已安装程序的 <code>--help</code> 和项目实现为准；后续升级时可用 <code>sshadmin --help</code> 检查变化。</p>
+<p>文中的 <code>dev-server</code> 是示例主机别名，<code>work</code> 是示例 tmux 会话名，请替换成自己的名称。<code>&lt;别名&gt;</code>、<code>&lt;秒数&gt;</code> 是占位符，实际输入时不要保留尖括号。</p>
+
+<p><a id="quickstart"></a></p>
+<h2>1. 快速开始：最常用的操作</h2>
+<h3>1.1 用别名直接连接服务器</h3>
+<p>在 macOS“终端”、其他终端软件或本机 AI 的终端里输入：</p>
+<pre><code class="language-bash">sshadmin ssh dev-server
+</code></pre>
+<p>登录后输入的命令在服务器上执行。输入 <code>exit</code> 退出这次 SSH 登录。</p>
+<p>只查询主机名和用户名，查询完自动返回本机：</p>
+<pre><code class="language-bash">sshadmin ssh dev-server &#39;hostname; id -un&#39;
+</code></pre>
+<p>命令执行完会自动回到本机，并带回远端命令的退出码（成功为 <code>0</code>）。</p>
+<h3>1.2 找到现有主机</h3>
+<p>打开 SSHAdmin → <strong>主机</strong>。软件自动读取 <code>~/.ssh/config</code> 及其中的 <code>Include</code> 文件。也可执行：</p>
+<pre><code class="language-bash">sshadmin list
+</code></pre>
+<h3>1.3 新增一台密码登录的主机</h3>
+<ol>
+<li><strong>主机 → 新增</strong>，填写别名、地址、用户和端口。</li>
+<li>认证方式选 <strong>密码（保存到钥匙串）</strong>，填写密码；也可以先保存主机，再在详情中保存密码。</li>
+<li>点 <strong>预览变更</strong>，确认写入内容后应用。</li>
+<li>完成 <strong>测试并信任</strong>，核对服务器指纹；如 macOS 提示钥匙串授权，按自己的使用意愿授权。</li>
+<li>确认主机详情中允许 AI 使用已保存凭据，并通过新连接验证。</li>
+<li>之后输入 <code>sshadmin ssh 别名</code> 即可，无需反复输入密码。</li>
+</ol>
+<h3>1.4 让任务在关闭软件后继续运行</h3>
+<p><strong>tmux → 选主机 → 启用 → 输入会话名 → 新建并接入</strong>，然后在接入的终端里启动任务。</p>
+<p>离开时关闭该终端标签，或按 <code>Ctrl+B</code>、松开后按 <code>D</code> 分离。下次打开软件，到 <strong>tmux → 同一主机 → 原会话 → 接入</strong>。</p>
+<p>不要点击 <strong>结束</strong> 来代替离开；它会结束远端会话。远端服务器、tmux 和任务本身需要继续运行。</p>
+<h3>1.5 命令速查</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>你想做什么</th>
+<th>输入什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>看所有主机</td>
+<td><code>sshadmin list</code></td>
+</tr>
+<tr>
+<td>看主机详情</td>
+<td><code>sshadmin show dev-server</code></td>
+</tr>
+<tr>
+<td>登录服务器</td>
+<td><code>sshadmin ssh dev-server</code></td>
+</tr>
+<tr>
+<td>执行一条命令</td>
+<td><code>sshadmin ssh dev-server &#39;df -h&#39;</code></td>
+</tr>
+<tr>
+<td>检查连接是否可用</td>
+<td><code>sshadmin doctor dev-server --connect</code></td>
+</tr>
+<tr>
+<td>给 AI 返回 JSON</td>
+<td><code>sshadmin exec dev-server -c &#39;hostname&#39; --json</code></td>
+</tr>
+<tr>
+<td>接入已经存在的 tmux 会话</td>
+<td><code>sshadmin connect dev-server --tmux work</code></td>
+</tr>
+<tr>
+<td>查用法</td>
+<td><code>sshadmin --help</code>、<code>sshadmin ssh --help</code></td>
+</tr>
+</tbody></table></div>
+<p><a id="concepts"></a></p>
+<h2>2. 先分清几个概念</h2>
+<h3>2.1 六个页面分别做什么</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>页面</th>
+<th>主要用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>主机</td>
+<td>识别和管理连接，分组、标签、备注，测试认证，打开终端</td>
+</tr>
+<tr>
+<td>终端</td>
+<td>本地 Shell、远程 SSH、标签与分屏、搜索输出</td>
+</tr>
+<tr>
+<td>tmux</td>
+<td>检测远端 tmux，创建、接入、重命名和结束会话</td>
+</tr>
+<tr>
+<td>凭据</td>
+<td>查看已保存凭据的索引、关联主机，删除不再需要的凭据</td>
+</tr>
+<tr>
+<td>AI 接入</td>
+<td>查看可供 AI 使用的主机，复制接入说明，安装命令链接</td>
+</tr>
+<tr>
+<td>设置</td>
+<td>外观、字体、历史、配置备份恢复、诊断和版本信息</td>
+</tr>
+</tbody></table></div>
+<h3>2.2 原生 SSH 与 SSHAdmin 命令的区别</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>入口</th>
+<th>适合做什么</th>
+<th>是否使用 SSHAdmin 保存的密码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ssh dev-server</code></td>
+<td>直接用系统 SSH</td>
+<td>不会自动读取 SSHAdmin 钥匙串凭据</td>
+</tr>
+<tr>
+<td><code>sshadmin ssh dev-server</code></td>
+<td>日常登录、AI 自己的终端、管道、转发、长任务</td>
+<td>条件满足时会代为提交</td>
+</tr>
+<tr>
+<td><code>sshadmin exec dev-server -c &#39;命令&#39; --json</code></td>
+<td>AI/脚本需要结构化执行结果</td>
+<td>条件满足时会代为提交</td>
+</tr>
+<tr>
+<td><code>sshadmin connect dev-server</code></td>
+<td>人在交互终端登录，或用 <code>--tmux</code> 接入会话</td>
+<td>条件满足时会使用，支持交互处理</td>
+</tr>
+<tr>
+<td>SSHAdmin 的“打开终端”</td>
+<td>在软件界面内操作服务器</td>
+<td>条件满足时会使用</td>
+</tr>
+</tbody></table></div>
+<p><code>sshadmin ssh</code> 在调用方自己的终端工作，GUI 不需要开着。它最终调用系统 <code>/usr/bin/ssh</code>，SSHAdmin 负责配置和凭据配合。</p>
+<p>“无需输入密码”不等于服务器改成了公钥免密登录：密码认证仍然存在，只是软件通过受控通道代为提交。它不会自动给服务器安装公钥或修改 SSH 服务。</p>
+<h3>2.3 别名、显示名称、地址</h3>
+<ul>
+<li><strong>别名（Host）</strong>：命令里使用的名字，例如 <code>dev-server</code>；精确匹配，区分大小写。</li>
+<li><strong>显示名称</strong>：界面上好认的名称，例如“开发服务器”；不替代命令中的别名。</li>
+<li><strong>地址（HostName）</strong>：真实 IP 或域名，例如 <code>10.0.1.21</code> 或 <code>dev.example.com</code>。</li>
+</ul>
+<p>不要只看显示名称或地址来猜命令参数，别名以 <code>sshadmin list</code> 的输出为准。</p>
+<p><a id="hosts"></a></p>
+<h2>3. 主机管理：识别、新增、编辑、删除</h2>
+<h3>3.1 现有配置如何识别</h3>
+<p>首次启动读取 <code>~/.ssh/config</code> 和 <code>Include</code> 引用的文件，识别里面的具体 <code>Host</code> 别名。首次识别不会主动连接主机，也不会改写原配置。</p>
+<p>以下配置会识别为别名 <code>dev-server</code>：</p>
+<pre><code class="language-sshconfig">Host dev-server
+    HostName 10.0.1.21
+    User deploy
+    Port 22
+</code></pre>
+<p>这只是格式示例。已经写在 <code>~/.ssh/config</code> 里的主机无需重新添加。</p>
+<ul>
+<li>仅在历史命令中用过 <code>ssh 用户@IP</code>，不代表已经有可识别的 <code>Host</code> 配置。</li>
+<li><code>known_hosts</code> 记录服务器公钥，不能代替完整主机配置。</li>
+<li>只放了一个私钥文件，软件无法据此推断它对应哪台服务器。</li>
+<li><code>Host *</code> 等通配规则用于继承配置，不会凭空展开成所有服务器。</li>
+<li>存在 <code>Match</code> 等动态规则时，界面展示的是可静态确定的信息；真正连接时由 OpenSSH 解析最终配置。</li>
+</ul>
+<p>从外部修改 SSH 配置后，程序会监听并刷新。若列表没有更新，可重新进入页面或重启软件，再查看“配置中有 … 个提示”。</p>
+<h3>3.2 新增主机的字段</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>怎么填写</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>别名</td>
+<td>建议使用易记的英文、数字、连字符，例如 <code>dev-server</code></td>
+</tr>
+<tr>
+<td>显示名称</td>
+<td>可选，便于辨认；命令仍用别名</td>
+</tr>
+<tr>
+<td>主机名 / 地址</td>
+<td>IP 或域名</td>
+</tr>
+<tr>
+<td>用户</td>
+<td>服务器登录账号；留空可能使用继承值或本机用户名，通常应明确填写</td>
+</tr>
+<tr>
+<td>端口</td>
+<td>通常为 22；有继承配置时以最终生效值为准</td>
+</tr>
+<tr>
+<td>认证方式</td>
+<td>沿用现有配置 / 密码 / 私钥文件 / SSH Agent</td>
+</tr>
+<tr>
+<td>私钥文件路径</td>
+<td>选择本机已有的私钥；多把密钥可每行一个路径；不是 <code>.pub</code> 公钥文件</td>
+</tr>
+<tr>
+<td>IdentityAgent</td>
+<td>选择 SSH Agent 时可填写自定义代理套接字，普通使用通常不必填</td>
+</tr>
+<tr>
+<td>跳板机</td>
+<td><code>ProxyJump</code>，例如已有别名 <code>bastion</code></td>
+</tr>
+<tr>
+<td>分组、标签、备注</td>
+<td>用于整理；标签用逗号分隔</td>
+</tr>
+<tr>
+<td>启用 tmux 管理</td>
+<td>允许该主机使用 tmux 管理功能，不会给服务器安装 tmux</td>
+</tr>
+</tbody></table></div>
+<p>新增的托管配置写入 <code>~/.ssh/sshadmin.conf</code>；首次需要时，软件会在主配置中加入 <code>Include</code>。写入前展示差异并自动备份。</p>
+<h3>3.3 编辑与重命名</h3>
+<p>选择主机 → <strong>编辑 → 预览变更 → 应用</strong>。来自已有配置的主机会在原文件位置做必要修改。</p>
+<p>如果一个配置块同时服务多个别名，界面会提示共享关系。只想修改当前别名时，勾选 <strong>只修改当前别名</strong>，避免影响共享别名。</p>
+<p>改命令中的名字要用 <strong>重命名</strong>；改界面显示名称用 <strong>编辑</strong>。改过别名后，同步更新自己和 AI 使用的命令。</p>
+<p>若出现“配置已被外部修改”，重新读取后再生成预览，不要直接覆盖。地址、用户、端口、跳板或凭据发生变化后，通常需要重新 <strong>测试并信任</strong>。</p>
+<h3>3.4 删除主机</h3>
+<p>选择主机 → <strong>删除</strong> → 检查差异 → 确认。</p>
+<p>这是删除本地连接配置，不会删除远端服务器或服务器文件。是否同时删除钥匙串凭据，由删除弹窗中的选项决定；仍被其他主机引用的凭据会保留。</p>
+<h3>3.5 搜索与整理</h3>
+<p>主机页支持按别名、地址、用户、标签等搜索，并通过分组、标签和“最近使用”筛选。选中主机查看详情；双击主机可打开 SSH 终端。</p>
+<p><a id="credentials"></a></p>
+<h2>4. 密码、私钥与凭据管理</h2>
+<h3>4.1 密码登录</h3>
+<p>主机详情 → <strong>保存密码…</strong> → 类型选“登录密码” → <strong>保存到钥匙串</strong> → <strong>测试并信任</strong>。</p>
+<p>保存后不回显密码。服务器密码变更后，在同一位置点 <strong>更新</strong>，再验证连接。SSHAdmin 保存密码不会更改服务器上的账户密码。</p>
+<h3>4.2 私钥登录</h3>
+<p>主机 → <strong>编辑</strong> → 认证方式选“私钥文件” → 选择私钥路径 → 预览并应用 → 测试连接。</p>
+<p>软件只引用私钥路径，不把私钥复制进数据库。移动或删除该文件会影响连接。</p>
+<p>如果私钥本身带口令：主机详情 → <strong>保存密码…</strong> → 类型选 <strong>私钥口令</strong> → 指定对应私钥路径 → 保存并验证。私钥口令用于解锁私钥，与服务器登录密码是两回事。</p>
+<h3>4.3 SSH Agent</h3>
+<p>认证方式选 <strong>SSH Agent</strong>，由你已有的 agent 提供密钥。需要保证运行 SSHAdmin/AI 的进程能访问这个 agent。</p>
+<p>可在对应终端执行 <code>ssh-add -l</code> 查看 agent 中的密钥指纹。这是系统命令，不是 SSHAdmin 自定义命令。agent 不可用、没有加载密钥或需要硬件确认时，仍需要你处理。</p>
+<h3>4.4 “测试并信任”与“AI 可用”</h3>
+<p>“测试并信任”会验证真实连接，并在需要时请你确认服务器指纹。请通过已有可信信息或管理员核对指纹。</p>
+<p>“AI 可用”表示有过一次新连接、无需人工输入、严格主机校验成功的验证。它不是持续在线监控；网络、服务器或凭据后来变化时仍可能失败。</p>
+<h3>4.5 凭据页的三个概念</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>实际效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>更新凭据</td>
+<td>替换保存的密码或私钥口令，需要重新验证</td>
+</tr>
+<tr>
+<td>解除关联</td>
+<td>主机不再使用这条凭据，但钥匙串项仍保留</td>
+</tr>
+<tr>
+<td>删除凭据</td>
+<td>真正删除钥匙串项；仍有主机引用时拒绝删除</td>
+</tr>
+</tbody></table></div>
+<p>在 <strong>凭据</strong> 页可看类型、关联主机、钥匙串条目状态、更新时间。不能查看或导出密码明文。删除前先在相应主机详情中解除关联。</p>
+<p>外部删除或改名配置后，可能出现“失去对应配置的记录”；这些记录会保留，对应 Host 回来后可恢复关联。</p>
+<h3>4.6 AI 使用开关与跳板机</h3>
+<p>主机详情的 <strong>AI 可使用已保存凭据</strong> 可控制 SSHAdmin 的 AI 命令是否使用该凭据。关闭它不会撤销密钥，也不会禁止其他程序直接运行系统 <code>ssh</code>。</p>
+<p>跳板机和目标主机是两次不同的认证。目标主机保存了密码，不代表跳板机密码也能自动填写；目标密码不会拿来回答跳板机的挑战。遇到跳板机口令、验证码或硬件确认，应先完成相应认证准备，或使用交互终端。</p>
+<p><a id="terminal"></a></p>
+<h2>5. 终端：标签、分屏、快捷键与历史</h2>
+<h3>5.1 打开、分屏与切换主机</h3>
+<ul>
+<li><strong>主机 → 打开终端</strong>：新建该主机的 SSH 终端。</li>
+<li>终端标签栏 <strong>+</strong>：新建本地终端。</li>
+<li><strong>+</strong> 旁的 <strong>▾</strong>：选择本地终端或一台主机。</li>
+<li>面板右上角的分屏按钮：左右或上下分屏。</li>
+<li><strong>每个面板的标题也是下拉菜单</strong>：可单独切换为本地或另一台主机。</li>
+</ul>
+<p>切换面板连接目标会关闭这个面板的旧连接并建立新连接；如果已输入过内容，界面会先确认。其他面板不受影响。</p>
+<p>不要把界面上的“本地终端”当成服务器终端。执行操作前看面板标题，必要时运行 <code>hostname</code>、<code>id -un</code> 确认位置。</p>
+<h3>5.2 常用快捷键</h3>
+<p>以下快捷键用于 SSHAdmin 的终端页。<code>⌘</code> 是 Command，<code>⇧</code> 是 Shift。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>⌘T</code></td>
+<td>新建本地终端标签</td>
+</tr>
+<tr>
+<td><code>⌘D</code></td>
+<td>左右分屏</td>
+</tr>
+<tr>
+<td><code>⇧⌘D</code></td>
+<td>上下分屏</td>
+</tr>
+<tr>
+<td><code>⌘W</code></td>
+<td>关闭当前面板；只有一个面板时关闭该标签</td>
+</tr>
+<tr>
+<td><code>⇧⌘W</code></td>
+<td>关闭整个窗口（<code>⌘W</code> 留给终端面板）</td>
+</tr>
+<tr>
+<td><code>⌘1</code> … <code>⌘9</code></td>
+<td>切换对应标签</td>
+</tr>
+<tr>
+<td><code>⌘[</code> / <code>⌘]</code></td>
+<td>在当前标签的面板间切换</td>
+</tr>
+<tr>
+<td><code>⌘F</code></td>
+<td>搜索回滚内容；搜索框中 Enter 下一个，Shift+Enter 上一个</td>
+</tr>
+<tr>
+<td><code>⌘K</code></td>
+<td>清理当前终端显示/回滚；不是删除服务器文件或 shell 历史</td>
+</tr>
+<tr>
+<td><code>⌘+</code> / <code>⌘-</code></td>
+<td>调大 / 调小终端字体</td>
+</tr>
+<tr>
+<td><code>⌘C</code> / <code>⌘V</code></td>
+<td>复制所选内容 / 粘贴</td>
+</tr>
+<tr>
+<td><code>Ctrl+C</code></td>
+<td>通常中断前台程序；不是复制</td>
+</tr>
+</tbody></table></div>
+<p>粘贴多行内容时默认先确认，因为其中的换行可能直接执行命令。可在设置中调整这一行为。</p>
+<h3>5.3 关闭、断线和重启</h3>
+<p>关闭普通 SSH 面板会断开连接；里面的任务可能因终端断开而结束，不能依靠普通 SSH 保证任务继续。某些自行脱离终端的进程可能仍存活，应另行检查，不能据断线认定任务一定已停。</p>
+<p>重新打开软件会恢复标签、分屏和连接入口，<strong>不会自动重连、不会重新执行旧命令</strong>。点击面板中的“连接”或相应启动按钮，才会启动新的连接。</p>
+<h3>5.4 终端历史到底保存什么</h3>
+<p><strong>设置 → 终端历史 → 保存终端历史</strong>，默认关闭。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>内容</th>
+<th>是否恢复</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>标签、分屏、连接入口</td>
+<td>会恢复布局，连接需要手动启动</td>
+</tr>
+<tr>
+<td>上次普通终端屏幕内容</td>
+<td>开启历史后可只读显示</td>
+</tr>
+<tr>
+<td>上次正在运行的程序</td>
+<td>终端历史不能恢复</td>
+</tr>
+<tr>
+<td>tmux 会话内运行的程序</td>
+<td>由远端 tmux 保持，重新接入查看</td>
+</tr>
+<tr>
+<td>shell 上下箭头查命令的历史</td>
+<td>由对应 shell 自己管理，不由此开关负责</td>
+</tr>
+</tbody></table></div>
+<p>每面板默认保存 2000 行，可设 200–10000 行；还受每面板 1 MiB、总计 32 MiB 的限制。历史只存本机，不加密，可能包含你输入的命令回显和输出中的敏感内容。tmux 面板及 vim 等备用屏幕内容不作为普通终端历史保存。</p>
+<p>关闭历史开关会删除全部已保存历史；关闭面板/标签会删除对应历史。清除历史不会停止当前程序；如果开关仍开启，之后的新内容还会继续保存。异常退出时最近约 2–10 秒的内容可能尚未写入。</p>
+<p><a id="tmux"></a></p>
+<h2>6. tmux：关闭软件后继续运行与重新接入</h2>
+<h3>6.1 要在远端服务器安装</h3>
+<p>SSHAdmin 的 tmux 管理操作的是<strong>远端服务器上的 tmux</strong>。仅在 Mac 上装 tmux，不能让服务器具备这项能力。软件不会自动安装它。</p>
+<p>可只读检查：</p>
+<pre><code class="language-bash">sshadmin ssh dev-server &#39;command -v tmux; tmux -V&#39;
+</code></pre>
+<p>如果提示没有 tmux，需要按服务器系统的方式安装，或由服务器管理员处理。</p>
+<h3>6.2 图形界面操作</h3>
+<ol>
+<li>打开 <strong>tmux</strong> 页，选择主机；若提示未启用，点 <strong>启用</strong>。</li>
+<li>等待检测；看到“tmux server 未运行（无会话）”表示尚无会话，不一定是错误。</li>
+<li>填写会话名，例如 <code>work</code>，点 <strong>新建并接入</strong>。</li>
+<li>在该终端里启动任务。只有在这个 tmux 会话内启动的任务才受它管理。</li>
+<li>离开时分离或关闭标签。</li>
+<li>下次进入同一服务器、同一登录用户的 tmux 列表，点原会话的 <strong>接入</strong>。</li>
+</ol>
+<p>列表显示名称、会话 ID、窗口数、已连接客户端数和创建时间。页面可见且窗口聚焦、上次查询成功时会约每 5 秒刷新；出错后可手动“刷新”。</p>
+<p>“已连接客户端 0”通常只是没人正在观看，会话仍可运行。重命名不会重新启动任务；名称只能由 1–64 个英文字母、数字、下划线 <code>_</code> 或连字符 <code>-</code> 组成（不能含空格、冒号、点或中文）。</p>
+<h3>6.3 关闭软件后会怎样</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>情况</th>
+<th>能否回到原任务</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>关闭 SSHAdmin / tmux 标签，或 Mac 断网</td>
+<td>通常能，前提是远端 tmux 和任务仍在运行</td>
+</tr>
+<tr>
+<td>Mac 关机，但服务器继续运行</td>
+<td>满足上面的条件时能</td>
+</tr>
+<tr>
+<td>关闭的是普通 SSH，任务没有放进 tmux</td>
+<td>不保证继续，也不能通过 tmux 找回</td>
+</tr>
+<tr>
+<td>在 tmux 页点击“结束”</td>
+<td>会结束对应会话，不能当作普通分离</td>
+</tr>
+<tr>
+<td>在会话最后一个 shell 中执行 <code>exit</code></td>
+<td>通常会结束该会话</td>
+</tr>
+<tr>
+<td>服务器重启、tmux 被杀或任务自己退出</td>
+<td>不能恢复原进程；当前版本没有进程恢复功能</td>
+</tr>
+<tr>
+<td>远端是 WSL，WSL 被关闭或宿主机重启</td>
+<td>同样无法保持原 tmux 进程</td>
+</tr>
+</tbody></table></div>
+<p>仅仅“启用 tmux 管理”不会把已经运行在普通 SSH 里的任务自动搬进去。需要先接入 tmux，再启动任务。</p>
+<h3>6.4 在自己的终端使用 tmux</h3>
+<p>以下命令在 Mac 的终端执行，<code>tmux</code> 部分会在服务器运行：</p>
+<pre><code class="language-bash"># 列出远端会话；没有会话时可能返回非零状态
+sshadmin ssh dev-server &#39;tmux list-sessions&#39;
+
+# 新建 work 会话并接入；如果已存在，改用下一条接入命令
+sshadmin ssh -t dev-server &#39;tmux new-session -s work&#39;
+
+# 接入已有会话
+sshadmin connect dev-server --tmux work
+
+# 按会话 ID 接入；单引号避免 $3 被本机 shell 展开
+sshadmin connect dev-server --tmux &#39;$3&#39;
+</code></pre>
+<p>如果只想观看、不想误输入，可使用 tmux 的只读客户端：</p>
+<pre><code class="language-bash">sshadmin ssh -t dev-server &#39;tmux attach-session -r -t =work&#39;
+</code></pre>
+<p>以上 tmux 创建、接入命令要求远端已安装 tmux。它们不是 <code>sshadmin tmux</code> 子命令；当前没有这个自定义子命令。</p>
+<h3>6.5 tmux 的常用按键</h3>
+<p>默认前缀为 <code>Ctrl+B</code>：先按住 Ctrl 按 B，松开，再按后面的键。若服务器改过 tmux 配置，以它的配置为准。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl+B</code> 然后 <code>D</code></td>
+<td>分离，保留远端会话</td>
+</tr>
+<tr>
+<td><code>Ctrl+B</code> 然后 <code>C</code></td>
+<td>新建 tmux 窗口</td>
+</tr>
+<tr>
+<td><code>Ctrl+B</code> 然后 <code>N</code> / <code>P</code></td>
+<td>下一个 / 上一个 tmux 窗口</td>
+</tr>
+<tr>
+<td><code>Ctrl+B</code> 然后 <code>[</code></td>
+<td>进入 tmux 复制/回看模式；通常按 Q 退出</td>
+</tr>
+<tr>
+<td><code>Ctrl+B</code> 然后 <code>?</code></td>
+<td>查看按键帮助</td>
+</tr>
+</tbody></table></div>
+<p>这些是 tmux 自身的操作，和 SSHAdmin 的 <code>⌘D</code> 分屏属于不同层次。<a href="https://github.com/tmux/tmux/wiki/Getting-Started">tmux 官方入门</a></p>
+<p><a id="cli"></a></p>
+<h2>7. 全部 SSHAdmin 自定义命令</h2>
+<h3>7.1 命令安装与 PATH</h3>
+<p>如果 <code>~/.local/bin/sshadmin</code> 链接已经建立，且该目录在终端的 PATH 中，就可以直接使用 <code>sshadmin</code> 短命令。</p>
+<p>还没有建立时，可点 <strong>AI 接入 → 安装 sshadmin 命令</strong>，或执行：</p>
+<pre><code class="language-bash">/Applications/SSHAdmin.app/Contents/MacOS/sshadmin install-cli
+</code></pre>
+<p>安装只建立命令链接，不修改 shell 配置。检查：</p>
+<pre><code class="language-bash">command -v sshadmin
+sshadmin --version
+</code></pre>
+<p>如果链接已安装，但出现 <code>command not found</code>，可先给当前终端增加 PATH：</p>
+<pre><code class="language-bash">export PATH=&quot;$HOME/.local/bin:$PATH&quot;
+</code></pre>
+<p>需要长期生效时，把上面这一行加入自己的 shell 配置，避免重复添加。macOS 常见交互 zsh 配置是 <code>~/.zshrc</code>；登录 shell 可用 <code>~/.zprofile</code>。添加后重新打开终端。AI 工具可能没有加载同一份 shell 配置，可重启该工具，或直接使用完整路径。</p>
+<p><code>PATH</code> 是终端寻找命令的目录列表。绝对路径调用不依赖 PATH：</p>
+<pre><code class="language-bash">/Applications/SSHAdmin.app/Contents/MacOS/sshadmin ssh dev-server
+</code></pre>
+<h3>7.2 完整命令清单</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>参数</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>sshadmin list</code></td>
+<td><code>--json</code></td>
+<td>列出主机</td>
+</tr>
+<tr>
+<td><code>sshadmin show &lt;别名&gt;</code></td>
+<td><code>--json</code></td>
+<td>主机详情</td>
+</tr>
+<tr>
+<td><code>sshadmin doctor &lt;别名&gt;</code></td>
+<td><code>--connect</code>、<code>--json</code></td>
+<td>本地诊断或实际连接验证</td>
+</tr>
+<tr>
+<td><code>sshadmin ssh …</code></td>
+<td>SSH 的选项、主机、远端命令</td>
+<td>原生终端式访问</td>
+</tr>
+<tr>
+<td><code>sshadmin exec &lt;别名&gt;</code></td>
+<td><code>-c/--command</code>、<code>--json</code>、<code>--timeout</code>、<code>--stdin</code></td>
+<td>单次执行、结构化结果</td>
+</tr>
+<tr>
+<td><code>sshadmin connect &lt;别名&gt;</code></td>
+<td><code>--tmux</code></td>
+<td>交互登录或接入已有 tmux 会话</td>
+</tr>
+<tr>
+<td><code>sshadmin trust &lt;别名&gt;</code></td>
+<td><code>--json</code></td>
+<td>人工确认指纹并测试</td>
+</tr>
+<tr>
+<td><code>sshadmin credential set &lt;别名&gt;</code></td>
+<td><code>--kind</code>、<code>--identity</code></td>
+<td>保存密码或私钥口令</td>
+</tr>
+<tr>
+<td><code>sshadmin credential unlink &lt;别名&gt;</code></td>
+<td>无</td>
+<td>解除凭据关联</td>
+</tr>
+<tr>
+<td><code>sshadmin credential delete &lt;别名&gt;</code></td>
+<td>无</td>
+<td>解除关联并尝试删除钥匙串项</td>
+</tr>
+<tr>
+<td><code>sshadmin install-cli</code></td>
+<td><code>--dir</code>、<code>--json</code></td>
+<td>安装短命令链接</td>
+</tr>
+<tr>
+<td><code>sshadmin uninstall-cli</code></td>
+<td><code>--dir</code>、<code>--json</code></td>
+<td>移除短命令链接</td>
+</tr>
+<tr>
+<td><code>sshadmin help</code></td>
+<td>可接子命令名</td>
+<td>查看帮助</td>
+</tr>
+<tr>
+<td><code>sshadmin --help</code> / <code>-h</code></td>
+<td>无</td>
+<td>查看总帮助</td>
+</tr>
+<tr>
+<td><code>sshadmin --version</code> / <code>-V</code></td>
+<td>无</td>
+<td>查看版本</td>
+</tr>
+</tbody></table></div>
+<p>当前没有 <code>sshadmin add</code>、<code>remove</code>、<code>tmux</code>、<code>backup</code>、<code>credential get</code> 等子命令。增删主机、配置备份、tmux 图形管理通过相应页面操作；也可通过 <code>sshadmin ssh</code> 执行服务器已有的命令。</p>
+<p><code>list/show/doctor/exec/connect/trust/credential</code> 面向已识别的精确别名。<code>sshadmin ssh</code> 是例外：它也可把未受管目标交给系统 SSH，但不会凭空获得那个目标的已保存密码。为了稳定复用凭据，日常和 AI 使用都优先用列表中的别名。</p>
+<h3>7.3 list：列出主机</h3>
+<pre><code class="language-bash">sshadmin list
+sshadmin list --json
+</code></pre>
+<p>只检查本机配置，不主动连接远端。JSON 包含主机别名、认证类型、凭据和 AI 状态等。<code>ai_ready</code> 为 <code>true</code> 表示有有效的无人值守验证记录；<code>false</code> 不一定是服务器故障，也可能只是尚未验证。</p>
+<h3>7.4 show：查看一台主机</h3>
+<pre><code class="language-bash">sshadmin show dev-server
+sshadmin show dev-server --json
+</code></pre>
+<p>可查看地址、端口、用户、来源、认证和最近验证情况。输出没有密码，私钥信息会作限制展示；地址和用户名等仍是连接信息，不等同于完全匿名的诊断导出。</p>
+<h3>7.5 doctor：诊断问题</h3>
+<pre><code class="language-bash"># 仅本地检查，不连接服务器
+sshadmin doctor dev-server
+
+# 发起新连接，检查真实认证与有限的远程执行
+sshadmin doctor dev-server --connect
+
+# 给脚本或 AI 使用
+sshadmin doctor dev-server --connect --json
+</code></pre>
+<p><code>--connect</code> 会实际联网，并记录验证结果。它不会替人确认未知指纹或解决验证码；遇到这些情况使用 <strong>测试并信任</strong> 或交互入口。</p>
+<h3>7.6 ssh：像普通 SSH 一样使用</h3>
+<p>语法：</p>
+<pre><code class="language-text">sshadmin ssh [SSH选项] 别名 [远端命令]
+</code></pre>
+<p>常用例子：</p>
+<pre><code class="language-bash"># 登录交互 shell
+sshadmin ssh dev-server
+
+# 执行完自动退出
+sshadmin ssh dev-server &#39;hostname; id -un; df -h&#39;
+
+# 给需要终端的程序分配伪终端，例如 top；按 Q 退出 top
+sshadmin ssh -t dev-server top
+
+# 设置连接超时和保活检查
+sshadmin ssh -o ConnectTimeout=10 -o ServerAliveInterval=30 -o ServerAliveCountMax=3 dev-server
+
+# 查看连接诊断信息
+sshadmin ssh -v dev-server &#39;hostname&#39;
+</code></pre>
+<p>这些选项来自 OpenSSH：<code>-t</code> 分配伪终端，<code>-T</code> 不分配，<code>-v</code> 输出调试信息，<code>-o</code> 设置 SSH 选项；<code>ConnectTimeout</code> 约束建立连接阶段，不是远端任务总时长。<a href="https://man.openbsd.org/ssh">OpenSSH 命令手册</a></p>
+<p>SSHAdmin 的这个入口没有额外的任务时长或输出总量上限，也不返回结构化 JSON；网络、服务器和调用它的 AI/终端仍可能有自己的限制。</p>
+<p>保存的密码只用于已确认的连接目标。如果用 <code>-p</code>、<code>-l</code>、<code>-J</code> 等改变了实际端口、用户或跳板，可能触发 <code>CREDENTIAL_BINDING_CHANGED</code>。正常修改这些内容应在软件中完成，再重新验证。</p>
+<p>**引号怎么用：**远端命令通常用单引号包起来。<code>sshadmin ssh dev-server &#39;echo &quot;$HOME&quot;&#39;</code> 中，<code>$HOME</code> 在远端展开。若改成双引号，可能先被本机 shell 展开。不要直接把不可信文字拼进命令。</p>
+<h3>7.7 exec：执行一次并获取结果</h3>
+<pre><code class="language-bash">sshadmin exec dev-server --command &#39;df -h&#39;
+sshadmin exec dev-server -c &#39;hostname; id -un&#39; --json
+sshadmin exec dev-server -c &#39;uname -a&#39; --timeout 30 --json
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--command</code> / <code>-c</code></td>
+<td>必填；整个远端 shell 命令作为一个参数</td>
+</tr>
+<tr>
+<td><code>--json</code></td>
+<td>最终输出单个 JSON，方便 AI/脚本读取</td>
+</tr>
+<tr>
+<td><code>--timeout 秒数</code></td>
+<td>本地等待上限，默认 60 秒；0 表示不设本地执行超时</td>
+</tr>
+<tr>
+<td><code>--stdin</code></td>
+<td>把本进程标准输入转发到远端；默认关闭</td>
+</tr>
+</tbody></table></div>
+<p>输入管道示例：</p>
+<pre><code class="language-bash">printf &#39;hello\n&#39; | sshadmin exec dev-server -c &#39;wc -c&#39; --stdin --json
+</code></pre>
+<p><code>exec</code> 不分配交互终端，不适合 <code>vim</code>、<code>top</code>、交互式 sudo。需要这类交互时使用 <code>sshadmin ssh -t</code> 或软件终端。</p>
+<p>stdout 和 stderr 的累计处理上限为 <strong>8 MiB</strong>。<code>--timeout 0</code> 只取消执行超时，不取消输出上限。持续输出或大数据流应使用 <code>sshadmin ssh</code>。</p>
+<p>超时、取消、输出超限和网络中断不等于远端操作回滚；远端任务可能已经完成或仍在运行。先确认远端状态，再决定是否重新执行。</p>
+<h3>7.8 如何读 JSON 和退出码</h3>
+<p><code>exec --json</code> 常用字段：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ok</code></td>
+<td>是否成功</td>
+</tr>
+<tr>
+<td><code>stdout</code> / <code>stderr</code></td>
+<td>标准输出与错误输出；stderr 也可能含 SSH 诊断</td>
+</tr>
+<tr>
+<td><code>stdout_encoding</code> / <code>stderr_encoding</code></td>
+<td>通常为 <code>utf8</code>；二进制输出可能为 <code>base64</code></td>
+</tr>
+<tr>
+<td><code>remote_exit_code</code></td>
+<td>可信的远端退出码；不能确定时为 null</td>
+</tr>
+<tr>
+<td><code>ssh_exit_code</code></td>
+<td>SSH 进程退出码</td>
+</tr>
+<tr>
+<td><code>result_certainty</code></td>
+<td><code>completed</code> 已确定完成；<code>not_started</code> 未开始；<code>unknown</code> 结果未知</td>
+</tr>
+<tr>
+<td><code>error.code</code> / <code>error.message</code></td>
+<td>机器可读错误码 / 说明</td>
+</tr>
+<tr>
+<td><code>error.action_required</code></td>
+<td>建议下一步，可能为空</td>
+</tr>
+<tr>
+<td><code>truncated</code></td>
+<td>输出是否截断</td>
+</tr>
+<tr>
+<td><code>duration_ms</code></td>
+<td>执行耗时，毫秒</td>
+</tr>
+</tbody></table></div>
+<p>常见退出码：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>退出码</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>1</td>
+<td>常见应用错误；也可能是远端命令返回 1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>参数错误；也可能是远端命令返回 2</td>
+</tr>
+<tr>
+<td>124</td>
+<td><code>exec</code> 本地超时</td>
+</tr>
+<tr>
+<td>125</td>
+<td><code>exec</code> 输出超限</td>
+</tr>
+<tr>
+<td>130</td>
+<td><code>exec</code> 被取消</td>
+</tr>
+<tr>
+<td>255</td>
+<td>SSH 失败或远端返回 255，结果可能不确定</td>
+</tr>
+<tr>
+<td>其他 1–254</td>
+<td>远端非零退出码通常原样保留</td>
+</tr>
+</tbody></table></div>
+<p>同一个数字可能来自不同层次，尤其是远端程序也可以返回 124、125、130。自动化应结合 JSON 的 <code>error.code</code> 和 <code>result_certainty</code> 判断。<code>sshadmin ssh</code> 不使用这套 JSON，启动器失败通常为 255，连接后的状态遵循 SSH/远端进程。</p>
+<h3>7.9 connect：人的交互入口</h3>
+<pre><code class="language-bash">sshadmin connect dev-server
+sshadmin connect dev-server --tmux work
+sshadmin connect dev-server --tmux &#39;$3&#39;
+</code></pre>
+<p>使用当前终端登录。<code>--tmux</code> 只接入<strong>已经存在</strong>的会话，不负责新建。它不接收 <code>--json</code> 或任意 SSH 选项；需要灵活传递选项，用 <code>sshadmin ssh</code>。</p>
+<h3>7.10 trust：人工信任并测试</h3>
+<pre><code class="language-bash">sshadmin trust dev-server
+sshadmin trust dev-server --json
+</code></pre>
+<p>必须在可交互的终端里执行。需要时确认指纹，之后测试交互连接与 AI 无交互连接。即使加 <code>--json</code>，也不代表变成无需人工确认的命令。AI 不应代替你盲目信任新指纹。</p>
+<h3>7.11 credential：保存、解除、删除</h3>
+<p>以下操作需要人在交互终端完成。密码输入不回显，并要求重复输入确认。</p>
+<pre><code class="language-bash"># 保存服务器登录密码；等提示时输入，不把密码写在命令后面
+sshadmin credential set dev-server
+
+# 显式指定登录密码类型，效果与上面相同
+sshadmin credential set dev-server --kind password
+
+# 保存某一把私钥的解锁口令；替换为你的真实私钥路径
+sshadmin credential set dev-server --kind passphrase --identity &quot;$HOME/.ssh/id_ed25519&quot;
+
+# 保存后完成信任与验证
+sshadmin trust dev-server
+</code></pre>
+<p>两种移除操作，请按目的单独选择：</p>
+<pre><code class="language-bash"># 只解除关联，钥匙串条目保留
+sshadmin credential unlink dev-server
+</code></pre>
+<pre><code class="language-bash"># 先解除当前主机关联，再尝试删除钥匙串条目
+sshadmin credential delete dev-server
+</code></pre>
+<p>若条目还被其他主机使用，<code>delete</code> 会保留条目并打印说明；不能只凭退出码 0 判断已经彻底删除，应看终端提示或凭据页。已解除关联的孤立条目，在 <strong>凭据</strong> 页删除。</p>
+<p>没有 <code>--password</code> 参数，也不能通过 <code>echo 密码 | …</code> 保存密码。<code>credential</code> 子命令不支持 <code>--json</code>。</p>
+<h3>7.12 install-cli / uninstall-cli</h3>
+<pre><code class="language-bash"># 默认目录为 ~/.local/bin
+/Applications/SSHAdmin.app/Contents/MacOS/sshadmin install-cli --json
+
+# 可指定其他目录；该目录需要由你自己加入 PATH
+/Applications/SSHAdmin.app/Contents/MacOS/sshadmin install-cli --dir &quot;$HOME/bin&quot; --json
+</code></pre>
+<p>卸载命令链接：</p>
+<pre><code class="language-bash">/Applications/SSHAdmin.app/Contents/MacOS/sshadmin uninstall-cli
+</code></pre>
+<p>若安装时使用了 <code>--dir</code>，卸载时指定同一个目录。安装不会覆盖别人的同名文件/链接，卸载只移除指向当前应用的链接。</p>
+<p><strong>卸载 CLI 链接不会删除应用、主机配置、密码或服务器数据。</strong></p>
+<h3>7.13 查帮助</h3>
+<pre><code class="language-bash">sshadmin --help
+sshadmin help exec
+sshadmin exec --help
+sshadmin ssh --help
+sshadmin credential --help
+sshadmin credential set --help
+sshadmin --version
+</code></pre>
+<p><code>sshadmin ssh -V</code> 查询系统 SSH 的版本；<code>sshadmin --version</code> 查询 SSHAdmin 自身版本。不要混淆。</p>
+<p><a id="ai"></a></p>
+<h2>8. 让本机 AI 使用服务器</h2>
+<h3>8.1 你先完成一次准备</h3>
+<ol>
+<li>主机已在 SSHAdmin 中正确配置。</li>
+<li>使用密码或私钥口令的主机，先保存凭据。</li>
+<li>完成 <strong>测试并信任</strong>，按需完成 macOS 钥匙串授权。</li>
+<li>允许本机 AI 使用该凭据，并确认 AI 就绪状态。</li>
+<li><strong>AI 接入 → 复制给 AI 的说明</strong>，交给能在本机执行终端命令的 AI。</li>
+</ol>
+<p>SSHAdmin 不会自动修改所有 AI 工具的全局规则，也不是 MCP 服务。远程云端 AI 不能自动读取你这台 Mac 的配置和钥匙串。</p>
+<h3>8.2 可以直接给 AI 的简短说明</h3>
+<pre><code class="language-text">本机已安装 SSHAdmin。优先使用 sshadmin；若找不到命令，使用：
+/Applications/SSHAdmin.app/Contents/MacOS/sshadmin
+
+先通过 sshadmin list --json 确认精确主机别名。
+需要交互、实时输出、管道或长任务时，在你自己的终端使用：
+sshadmin ssh &lt;别名&gt; &#39;&lt;已获授权的命令&gt;&#39;
+需要结构化结果时使用：
+sshadmin exec &lt;别名&gt; --command &#39;&lt;已获授权的命令&gt;&#39; --json
+
+不要读取、导出或索要已保存密码，不把密码放进参数、脚本或日志。
+使用已有别名，不擅自更改目标地址、账号、端口、跳板或主机信任记录。
+遇到钥匙串授权、指纹变化、验证码或凭据错误时停止重试，告诉我具体原因。
+超时或断线后先核实任务状态，不直接重放可能有副作用的命令。
+需要关闭客户端后继续运行的任务，先进入远端 tmux，再启动任务。
+按我授权的任务范围操作；新增破坏性操作先征得同意。
+</code></pre>
+<p>实际发给 AI 时，可以直接说：“使用 SSHAdmin 连接 <code>dev-server</code>，只查看主机名和磁盘使用情况。”你无需在聊天中提供密码。</p>
+<h3>8.3 三个常见疑问</h3>
+<ul>
+<li><strong>必须打开 SSHAdmin 界面吗？</strong> 不需要。CLI 可独立运行；凭据、信任、钥匙串状态仍需满足条件。</li>
+<li><strong>AI 用的是哪个终端？</strong> <code>sshadmin ssh</code> 使用 AI 自己执行命令的终端，不会跳转到 SSHAdmin 内置终端。</li>
+<li><strong>AI 登录后为什么 sudo 还问密码？</strong> SSH 登录认证和 sudo 提权是两回事；保存 SSH 密码不等于自动回答远端 sudo 或其他程序的密码提示。</li>
+</ul>
+<p><a id="recipes"></a></p>
+<h2>9. 常用操作示例</h2>
+<h3>9.1 只读检查服务器</h3>
+<pre><code class="language-bash">sshadmin ssh dev-server &#39;hostname; id -un; uname -sr; uptime; df -h&#39;
+</code></pre>
+<p>这些命令在服务器执行。不同服务器系统可能提供不同工具；此示例适用于常见 Linux 环境。</p>
+<h3>9.2 实时查看日志</h3>
+<p>用你确实有权限读取的日志路径替换示例：</p>
+<pre><code class="language-bash">sshadmin ssh dev-server &#39;tail -f /path/to/app.log&#39;
+</code></pre>
+<p>按 <code>Ctrl+C</code> 停止跟踪。持续输出适合 <code>sshadmin ssh</code>，通常不适合有输出上限的 <code>exec --json</code>。</p>
+<h3>9.3 访问服务器仅监听本机的网页</h3>
+<p>假设服务器在 <code>127.0.0.1:3000</code> 提供网页，需要从 Mac 的 <code>http://127.0.0.1:8080</code> 访问：</p>
+<pre><code class="language-bash">sshadmin ssh -N -o ExitOnForwardFailure=yes -L 127.0.0.1:8080:127.0.0.1:3000 dev-server
+</code></pre>
+<p>保持这个命令运行，再用 Mac 浏览器访问本机 8080 端口。这里明确只监听 Mac 的回环地址；8080 已被占用时换一个本地端口。按 <code>Ctrl+C</code> 关闭转发。服务器必须允许 SSH 转发，目标服务也必须已启动。<a href="https://man.openbsd.org/ssh">OpenSSH 转发选项</a></p>
+<h3>9.4 在 tmux 中运行耗时任务</h3>
+<pre><code class="language-bash">sshadmin ssh -t dev-server &#39;tmux new-session -s work&#39;
+</code></pre>
+<p>进入后，再运行你自己的任务命令。需要离开时按 <code>Ctrl+B</code> 后 <code>D</code>；以后重新接入：</p>
+<pre><code class="language-bash">sshadmin connect dev-server --tmux work
+</code></pre>
+<p>tmux 保留的是运行环境，不会自动替任务生成完整持久日志。需要长期日志时，由任务自身或你明确指定的日志方式保存。</p>
+<h3>9.5 文件传输能不能用</h3>
+<p>当前没有内置 SFTP 文件管理器。<code>sshadmin ssh</code> 可配合需要远程 shell 的工具使用，例如在本机和服务器均安装 rsync 时：</p>
+<pre><code class="language-bash"># 仅预演，不实际传输；把路径与主机改成自己的
+rsync -avn -e &#39;sshadmin ssh&#39; ./local-dir/ dev-server:/path/to/remote-dir/
+</code></pre>
+<p>这是原生 rsync 的用法，<code>-n</code> 是预演。实际传输会写入目标目录，应确认路径后再执行相应操作。</p>
+<p>不能把 <code>sshadmin ssh</code> 直接当作 <code>scp -S</code> / <code>sftp -S</code> 所需的单个程序路径。纯密钥认证仍可按原有方式使用系统 scp/sftp；保存密码不会自动让这些工具读取 SSHAdmin 凭据。</p>
+<p><a id="settings"></a></p>
+<h2>10. 设置、备份与数据位置</h2>
+<h3>10.1 常用设置</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>设置项</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>主题</td>
+<td>跟随系统、浅色、深色</td>
+</tr>
+<tr>
+<td>终端字号</td>
+<td>9–28</td>
+</tr>
+<tr>
+<td>终端字体</td>
+<td>使用本机可用字体；按字体列表填写</td>
+</tr>
+<tr>
+<td>回滚缓冲行数</td>
+<td>当前终端可往回查看的内容，1000–100000，默认 10000</td>
+</tr>
+<tr>
+<td>粘贴多行内容前确认</td>
+<td>减少一次粘贴误执行多条命令</td>
+</tr>
+<tr>
+<td>光标闪烁</td>
+<td>终端显示效果</td>
+</tr>
+<tr>
+<td>保存终端历史</td>
+<td>重启后查看上次的普通终端屏幕内容，默认关闭</td>
+</tr>
+<tr>
+<td>SSH 配置备份</td>
+<td>查看自动备份并预览恢复</td>
+</tr>
+<tr>
+<td>导出诊断</td>
+<td>导出脱敏的状态信息，便于排错</td>
+</tr>
+<tr>
+<td>关于</td>
+<td>应用版本、系统 OpenSSH、实际程序与数据路径</td>
+</tr>
+</tbody></table></div>
+<h3>10.2 配置备份与恢复</h3>
+<p>通过 SSHAdmin 修改 SSH 配置前会自动备份，保留最近 <strong>20 份</strong>。</p>
+<p>恢复步骤：<strong>设置 → SSH 配置备份 → 选择时间 → 预览恢复 → 检查差异 → 恢复</strong>。</p>
+<p>恢复会修改本地 SSH 配置，所以要核对预览。它不是整机备份，不会恢复钥匙串密码、私钥文件、运行中的进程或终端历史。外部手工修改也不等于每次都生成 SSHAdmin 备份。</p>
+<p>需要编辑复杂 SSH 指令时，可从 <strong>设置 → 编辑配置原文…</strong> 进入。保存前仍会校验、展示差异和备份；不熟悉配置语法时优先使用主机表单。</p>
+<h3>10.3 数据放在哪里</h3>
+<p><code>~</code> 表示当前用户主目录；例如 <code>/Users/demo</code>。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>默认位置 / 说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用</td>
+<td><code>/Applications/SSHAdmin.app</code></td>
+</tr>
+<tr>
+<td>主程序兼 CLI</td>
+<td><code>/Applications/SSHAdmin.app/Contents/MacOS/sshadmin</code></td>
+</tr>
+<tr>
+<td>短命令链接</td>
+<td><code>~/.local/bin/sshadmin</code></td>
+</tr>
+<tr>
+<td>SSH 主配置</td>
+<td><code>~/.ssh/config</code></td>
+</tr>
+<tr>
+<td>SSHAdmin 托管主机</td>
+<td><code>~/.ssh/sshadmin.conf</code></td>
+</tr>
+<tr>
+<td>已信任服务器公钥</td>
+<td>通常在 <code>~/.ssh/known_hosts</code>；可受 SSH 配置影响</td>
+</tr>
+<tr>
+<td>主机备注、状态、设置等</td>
+<td><code>~/Library/Application Support/SSHAdmin/sshadmin.db</code></td>
+</tr>
+<tr>
+<td>配置备份</td>
+<td><code>~/Library/Application Support/SSHAdmin/backups/</code></td>
+</tr>
+<tr>
+<td>终端历史</td>
+<td><code>~/Library/Application Support/SSHAdmin/history/</code></td>
+</tr>
+<tr>
+<td>密码和私钥口令</td>
+<td>macOS 钥匙串；服务名 <code>com.sshadmin.credentials</code></td>
+</tr>
+<tr>
+<td>私钥</td>
+<td>仍在你选择的原文件位置，不自动复制</td>
+</tr>
+</tbody></table></div>
+<p>自动提交的凭据不会写入终端输出，但你自己运行的命令仍可能把其他敏感内容打印出来；开启历史后，这些屏幕内容可能被保存。</p>
+<h3>10.4 诊断导出</h3>
+<p><strong>设置 → 导出诊断…</strong>，选择保存位置。内容包括版本、系统信息、主机数量、匿名状态和问题代码；不包含密码、别名、地址、用户名、私钥路径、备注和终端内容。</p>
+<p>这与 <code>sshadmin show --json</code> 不同：后者是连接详情，可能包含主机地址和用户名。</p>
+<p><a id="troubleshooting"></a></p>
+<h2>11. 常见问题与错误处理</h2>
+<h3>11.1 遇到问题先做这三步</h3>
+<pre><code class="language-bash"># 是否找得到程序
+command -v sshadmin
+
+# 别名是否正确，认证配置是否符合预期
+sshadmin show dev-server
+
+# 从本地问题查起；需要实际验证时再加 --connect
+sshadmin doctor dev-server
+</code></pre>
+<p>实际连接失败时保留完整错误码；认证错误或结果未知时不要无限重试。</p>
+<h3>11.2 故障速查表</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>现象 / 错误码</th>
+<th>含义与处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>command not found: sshadmin</code></td>
+<td>短命令未安装或 PATH 不包含目录。看 7.1；可先使用绝对路径</td>
+</tr>
+<tr>
+<td><code>HOST_NOT_FOUND</code></td>
+<td>别名不存在。运行 <code>list</code>，不要把显示名称当别名</td>
+</tr>
+<tr>
+<td><code>HOST_AMBIGUOUS</code></td>
+<td>无法唯一定位主机，检查配置来源和重复/复杂定义</td>
+</tr>
+<tr>
+<td><code>CREDENTIAL_MISSING</code></td>
+<td>需要密码但未保存；在主机详情保存，再测试</td>
+</tr>
+<tr>
+<td><code>CREDENTIAL_BINDING_CHANGED</code></td>
+<td>目标、账号、端口、跳板或信任等与凭据绑定不同。核对后在软件内重新测试并信任</td>
+</tr>
+<tr>
+<td><code>AI_CREDENTIAL_USE_DISABLED</code></td>
+<td>该主机不允许 AI 使用已保存凭据；按你的意愿调整开关</td>
+</tr>
+<tr>
+<td><code>KEYCHAIN_INTERACTION_REQUIRED</code></td>
+<td>钥匙串锁定或尚需授权。打开软件完成授权，或在自己的交互终端用 <code>trust</code> / <code>connect</code> 处理；<code>ssh</code> / <code>exec</code> 的自动化入口不会替你弹框解决</td>
+</tr>
+<tr>
+<td><code>KEYCHAIN_ACCESS_DENIED</code></td>
+<td>钥匙串拒绝访问；检查该应用的授权</td>
+</tr>
+<tr>
+<td><code>HOST_KEY_UNTRUSTED</code></td>
+<td>指纹未信任，先由你核对服务器指纹</td>
+</tr>
+<tr>
+<td><code>HOST_KEY_CHANGED</code></td>
+<td>指纹与记录不同，先确认服务器是否重装/换机及真实指纹，不要直接跳过校验</td>
+</tr>
+<tr>
+<td><code>AUTH_FAILED</code> / <code>Permission denied</code></td>
+<td>用户名、密码、密钥或服务器认证策略不匹配；更新后再验证</td>
+</tr>
+<tr>
+<td><code>AUTH_INTERACTION_REQUIRED</code></td>
+<td>需要验证码、令牌、跳板机交互或其他人工步骤，使用交互终端处理</td>
+</tr>
+<tr>
+<td><code>KEY_FILE_MISSING</code></td>
+<td>私钥移动、删除或路径填错，重新选择</td>
+</tr>
+<tr>
+<td><code>KEY_PERMISSION_INVALID</code></td>
+<td>私钥权限过宽，先确认正确文件并修正权限</td>
+</tr>
+<tr>
+<td><code>AGENT_UNAVAILABLE</code></td>
+<td>当前进程看不到 SSH Agent；检查 agent 和密钥加载情况</td>
+</tr>
+<tr>
+<td><code>AUTH_POLICY_CONFLICT</code> / <code>EXEC_CONFIG_CONFLICT</code></td>
+<td>SSH 配置和所选认证/执行方式冲突，依据提示检查实际配置</td>
+</tr>
+<tr>
+<td><code>CONNECTION_TIMEOUT</code></td>
+<td>地址、端口、VPN、网络、防火墙或服务器服务不可达</td>
+</tr>
+<tr>
+<td><code>CONNECTION_FAILED</code> / <code>No route to host</code></td>
+<td>检查网络和服务器；局域网还要检查 macOS 的本地网络权限</td>
+</tr>
+<tr>
+<td><code>EXEC_TIMEOUT</code> / <code>EXEC_CANCELLED</code> / <code>OUTPUT_LIMIT_EXCEEDED</code></td>
+<td>执行结果可能未知，先看服务器实际状态；持续任务改用 <code>ssh</code> / tmux</td>
+</tr>
+<tr>
+<td><code>SSH_OR_REMOTE_255</code></td>
+<td>SSH 失败或远端返回 255，结合 stderr 判断，不能自动认定未执行</td>
+</tr>
+<tr>
+<td><code>REMOTE_COMMAND_FAILED</code></td>
+<td>远端命令已结束但返回非零；查看命令输出和业务含义</td>
+</tr>
+<tr>
+<td>tmux 无会话 / server 未运行</td>
+<td>通常是没有现有会话；如果预期有，确认服务器、用户、会话是否仍存活</td>
+</tr>
+<tr>
+<td>远端没有 tmux</td>
+<td>需要在远端安装，SSHAdmin 不会自动安装</td>
+</tr>
+<tr>
+<td>重开软件只有旧画面，没有输入响应</td>
+<td>可能是历史只读内容或待恢复面板；点击连接，或到 tmux 页接入原会话</td>
+</tr>
+</tbody></table></div>
+<h3>11.3 局域网访问：哪个应用需要授权</h3>
+<p>如果终端能连、SSHAdmin 不能连，检查 <strong>系统设置 → 隐私与安全性 → 本地网络</strong> 中 SSHAdmin 的开关。</p>
+<p>如果由其他终端或 AI 应用发起连接，需要检查的是那个应用的权限。不能因为已经允许 SSHAdmin，就认定其他应用也已获准。服务器真正离线时也可能报相同网络错误。</p>
+<h3>11.4 有普通终端访问权限，AI 仍失败</h3>
+<p>常见原因包括 PATH 不同、钥匙串未授权、agent 环境不同、本地网络权限不同，以及 AI 工具自己的沙箱/审批限制。</p>
+<p>先看错误来自 SSHAdmin、OpenSSH，还是 AI 工具自身。工具没有实际执行连接命令时，不能把它算成服务器连接失败。</p>
+<h3>11.5 两类权限不要混淆</h3>
+<ul>
+<li><strong>SSH 登录</strong>：能否登录服务器账户。</li>
+<li><strong>远端操作权限</strong>：登录后的账户能读写哪些文件、能否执行 sudo。</li>
+</ul>
+<p>能登录不代表有管理员权限。SSHAdmin 不会提升远端账户权限，也不会自动把 SSH 密码填入所有程序的密码提示。</p>
+<p><a id="maintenance"></a></p>
+<h2>12. 更新、迁移、卸载与功能边界</h2>
+<h3>12.1 图中的 OpenSSH 是哪一个</h3>
+<p>“设置 → 关于”显示当前 <code>/usr/bin/ssh -V</code> 的结果。它是系统 SSH，应用当前固定调用这个路径，没有绑定某个具体版本号。</p>
+<p>macOS 更新该程序后，后续连接使用更新后的版本；另行安装 Homebrew 的 SSH 不会自动切换此路径。正常升级 SSH 不会清除独立保存的主机配置和钥匙串密码。新版本与旧服务器的兼容性仍需要验证，不能保证所有未来版本行为完全一致。</p>
+<h3>12.2 更新 SSHAdmin</h3>
+<p>将新版本应用按原安装方式放回 <code>/Applications/SSHAdmin.app</code>。安装路径相同时，短命令链接通常仍指向正确位置。更新后检查：</p>
+<pre><code class="language-bash">sshadmin --version
+sshadmin list
+sshadmin doctor dev-server --connect
+</code></pre>
+<p>若代码签名身份变化，macOS 可能要求重新授权钥匙串。当前 <code>0.1.0</code> 版本号不足以区分所有本地重新打包版本，因此排错时也要说明更新日期和实际现象。</p>
+<h3>12.3 换电脑时需要哪些东西</h3>
+<p>当前没有一键跨设备同步或完整迁移功能。只复制 SSH 配置不能复制所有能力。</p>
+<p>需要分别考虑 SSH 配置及 Include 文件、原私钥文件、SSHAdmin 元数据、钥匙串凭据、新电脑的权限与命令 PATH。路径变化后要重新指定私钥；钥匙串授权与数据迁移按 macOS 的实际迁移方式处理，不能把密码放进普通文本备份来代替。</p>
+<p>先保留旧环境，再在新环境逐台验证。自动配置备份不能代替完整迁移。</p>
+<h3>12.4 卸载包含不同层次</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>目标</th>
+<th>处理方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>不再使用 <code>sshadmin</code> 短命令</td>
+<td><code>uninstall-cli</code>，其他数据保留</td>
+</tr>
+<tr>
+<td>不再使用某台主机</td>
+<td>主机页删除对应连接配置</td>
+</tr>
+<tr>
+<td>不再保留某个密码</td>
+<td>解除关联后在凭据页删除，或使用对应 credential 命令</td>
+</tr>
+<tr>
+<td>不再保存终端历史</td>
+<td>设置里关闭历史开关</td>
+</tr>
+<tr>
+<td>删除应用</td>
+<td>移除 SSHAdmin.app；不会自动清理所有配置和钥匙串内容</td>
+</tr>
+</tbody></table></div>
+<p>不要直接删除整个 <code>~/.ssh</code> 来卸载软件，其中可能还有其他工具依赖的配置和密钥。彻底清理用户数据需要按明确范围单独处理。</p>
+<h3>12.5 当前功能边界</h3>
+<p>支持本机主机管理、系统 SSH、密码与密钥、终端分屏、远端 tmux、AI 命令行接入、配置备份和可选终端历史。</p>
+<p>当前未提供：多人账号权限、云同步、Web 管理端、内置 SFTP 文件管理器、批量广播命令、MCP 服务、自动安装远端软件/公钥、服务器重启后的进程恢复。</p>
+<p>安装包目前以 Apple Silicon 为已验证平台，本地签名、未公证。其他架构和系统版本以项目实际验收记录为准。</p>
+<p><a id="references"></a></p>
+<h2>13. 核验范围与进一步阅读</h2>
+<p>本手册对照了本机已安装程序的总帮助、全部公开子命令帮助，以及当前界面和 Rust 实现。尤其核对了凭据子命令名、exec 默认 60 秒和 8 MiB 上限、tmux 接入方式、终端快捷键、历史保存边界及 CLI 安装行为。</p>
+<p>本次编写没有执行密码变更、删除凭据、恢复配置、结束 tmux 或文件传输示例。GUI 步骤依据当前实现核对，不宣称本次逐个点击验收。</p>
+<p>公开资料与下载入口：</p>
+<ul>
+<li><a href="https://dfbtcice.github.io/sshadmin/">SSHAdmin 官网</a>：产品介绍、演示视频和安装包。</li>
+<li><a href="https://github.com/DFBTCice/sshadmin/releases/tag/v0.1.0">0.1.0 版本下载</a>：Mac 安装包、离线手册、完整使用动画及 SHA-256 校验值。</li>
+<li><a href="https://github.com/DFBTCice/sshadmin/issues">反馈问题</a>：请说明应用版本、macOS 版本、操作步骤和错误信息；不要提交密码、私钥或未脱敏的服务器配置。</li>
+</ul>
+<p>应用源码暂不公开。日常查找优先用文档目录或浏览器的 <code>⌘F</code>；命令以已安装版本的 <code>sshadmin --help</code> 为准。</p>
+</article><div class="end">SSHAdmin 0.1.0 离线使用手册。阅读无需联网或登录；外部链接需要联网。示例命令不会自动执行。</div></main>
+<script>
+for(const pre of document.querySelectorAll('pre')){const code=pre.querySelector('code');if(!code)continue;const button=document.createElement('button');button.textContent='复制';button.setAttribute('aria-label','复制这一段示例');button.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(code.textContent);button.textContent='已复制';}catch{const range=document.createRange();range.selectNodeContents(code);const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);button.textContent='已选中，请复制';}setTimeout(()=>button.textContent='复制',1800)});pre.append(button)}
+</script></body></html>
