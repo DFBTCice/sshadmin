@@ -28,8 +28,8 @@ SSHAdmin 是面向 Apple Silicon Mac 的 SSH 管理工具，把主机、密钥�
 | Mac 安装包（DMG，约 5.7 MiB） | [SSHAdmin-0.1.0-macos-arm64.dmg](https://github.com/DFBTCice/sshadmin/releases/download/v0.1.0/SSHAdmin-0.1.0-macos-arm64.dmg) |
 | Mac 压缩包（ZIP，约 5.0 MiB） | [SSHAdmin-0.1.0-macos-arm64.zip](https://github.com/DFBTCice/sshadmin/releases/download/v0.1.0/SSHAdmin-0.1.0-macos-arm64.zip) |
 | 离线使用手册 | [HTML](https://github.com/DFBTCice/sshadmin/releases/download/v0.1.0/SSHAdmin-0.1.0-manual.html) / [Markdown](https://github.com/DFBTCice/sshadmin/releases/download/v0.1.0/SSHAdmin-0.1.0-manual.md) |
-| 官网演示视频（MP4，约 24 MiB） | [下载视频](https://github.com/DFBTCice/sshadmin/releases/download/v0.1.0/SSHAdmin-0.1.0-demo.mp4) / [在线播放](https://dfbtcice.github.io/sshadmin/#film) |
-| 完整使用动画（MP4，约 95 MiB） | [下载视频](https://github.com/DFBTCice/sshadmin/releases/download/v0.1.0/SSHAdmin-0.1.0-tutorial.mp4) |
+| 官网配音演示（MP4，约 25.4 MiB） | [下载视频](https://github.com/DFBTCice/sshadmin/releases/download/v0.1.0/SSHAdmin-0.1.0-demo.mp4) / [在线播放](https://dfbtcice.github.io/sshadmin/#film) |
+| 高清配音使用动画（MP4，约 96.7 MiB） | [下载视频](https://github.com/DFBTCice/sshadmin/releases/download/v0.1.0/SSHAdmin-0.1.0-tutorial.mp4) |
 | SHA-256 校验值 | [SHA256SUMS](https://github.com/DFBTCice/sshadmin/releases/download/v0.1.0/SHA256SUMS) |
 
 1. 下载 DMG 或 ZIP，把 `SSHAdmin.app` 放入 `/Applications`。
