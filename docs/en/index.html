@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SSHAdmin · Server management, with you in control</title>
+<meta name="description" content="SSHAdmin for Mac brings hosts, keys, passwords, terminals and tmux into one app. Saved passwords stay in macOS Keychain; your AI uses authorized connections through the CLI.">
+<meta name="theme-color" content="#05080f">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dfbtcice.github.io/sshadmin/en/index.html">
+<meta property="og:image" content="https://dfbtcice.github.io/sshadmin/img/en/poster.jpg">
+
+<meta property="og:title" content="SSHAdmin · Server management, with you in control">
+<meta property="og:description" content="A Mac SSH manager. Saved passwords stay in Keychain; SSHAdmin handles authentication for authorized AI connections.">
+<link rel="icon" href="../img/icon.png">
+<link rel="stylesheet" href="../style.css">
+<link rel="canonical" href="https://dfbtcice.github.io/sshadmin/en/index.html"><link rel="alternate" href="https://dfbtcice.github.io/sshadmin/zh/index.html" hreflang="zh-Hans"><link rel="alternate" href="https://dfbtcice.github.io/sshadmin/en/index.html" hreflang="en"><link rel="alternate" href="https://dfbtcice.github.io/sshadmin/index.html" hreflang="x-default"><script src="../language.js"></script></head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="SSHAdmin home"><img src="../img/icon.png" alt="" width="34" height="34"><span>SSHAdmin</span></a>
+    <nav class="links" aria-label="Main navigation">
+      <a href="#film">Demo</a>
+      <a href="#features">Features</a>
+      <a href="#security">Security</a>
+      <a href="#ai">AI</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="language-switch" role="group" aria-label="Language"><a data-language="zh-CN" href="../zh/index.html" lang="zh-Hans">简体中文</a><a data-language="en" href="../en/index.html" lang="en" aria-current="page">English</a><a data-language="system" href="../index.html?lang=system">Auto</a></div><a class="btn btn-sm" href="#download">Download for Mac</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ Hero ============ -->
+<section class="hero">
+  <div class="glow g1"></div><div class="glow g2"></div>
+  <div class="wrap hero-in">
+    <div class="chip"><i class="dot"></i>Native Mac SSH manager · 0.2.0</div>
+    <h1>Your servers,<br><span class="grad">in trusted hands.</span></h1>
+    <p class="lead">Hosts, keys, passwords, terminals and tmux in one Mac app.<br class="pc">Passwords stay in macOS Keychain. SSHAdmin handles authentication without returning saved passwords to your AI.</p>
+    <div class="cta">
+      <a class="btn btn-lg" href="#film"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>Watch the 3-minute demo</a>
+      <a class="btn btn-lg btn-ghost" href="#download">Download for Mac</a>
+    </div>
+    <p class="meta">macOS 12 or later · Apple Silicon (M series)</p>
+
+    <div class="stage" id="heroStage">
+      <div class="badge b1"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"></circle><path d="M11 12l9-9M16 7l3 3"></path></svg>Passwords stay in Keychain</div>
+      <div class="badge b2"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"></path><path d="M9 12l2 2 4-4"></path></svg>You verify the fingerprint</div>
+      <div class="badge b3"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"></path></svg>AI receives command results</div>
+      <figure class="win" id="heroWin">
+        <div class="bar"><i></i><i></i><i></i><span>SSHAdmin</span></div>
+        <img src="../img/en/hosts-dark.webp" alt="SSHAdmin host list and details" width="1320" height="840" fetchpriority="high">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 跑马灯 ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>Host inventory</span><span>Key authentication</span><span>Passwords in Keychain</span><span>Fingerprint verification</span><span>Tabs and split panes</span><span>tmux sessions</span><span>AI-assisted login</span><span>Automatic backups</span><span>Dark mode</span>
+    <span>Host inventory</span><span>Key authentication</span><span>Passwords in Keychain</span><span>Fingerprint verification</span><span>Tabs and split panes</span><span>tmux sessions</span><span>AI-assisted login</span><span>Automatic backups</span><span>Dark mode</span>
+  </div>
+</div>
+
+<!-- ============ 视频 ============ -->
+<section class="section film" id="film">
+  <div class="wrap">
+    <div class="head center reveal">
+      <p class="eyebrow">Walkthrough</p>
+      <h2>Learn the workflow in three minutes</h2>
+      <p class="sub">From your first server to an authorized AI connection. English narration and sample data throughout.</p>
+    </div>
+    <div class="player reveal" id="player">
+      <video id="demo" controls="" preload="metadata" playsinline="" poster="../img/en/poster.jpg" aria-label="SSHAdmin walkthrough with English narration">
+        <source src="../video/sshadmin-demo-en.mp4" type="video/mp4">
+        Your browser does not support video. Download the narrated video using the link below.
+      <track kind="captions" srclang="en" label="English" src="../video/sshadmin-demo-en.vtt"></video>
+      <button class="bigplay" id="bigplay" aria-label="Play narrated walkthrough"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg><span>Play the narrated demo<em>2:55</em></span></button>
+    </div>
+    <div class="chapters reveal" id="chapters">
+      <button data-t="0">Intro</button>
+      <button data-t="4.63">Add server</button>
+      <button data-t="26.389">Add key</button>
+      <button data-t="43.797">Add password</button>
+      <button data-t="78.329">Security</button>
+      <button data-t="99.519">Daily use</button>
+      <button data-t="127.081">Connect AI</button>
+    </div>
+    <p class="vlink reveal"><a href="../video/sshadmin-demo-en.mp4" download="SSHAdmin-walkthrough-en.mp4">Download English narration (1080p)</a> · <a href="../video/sshadmin-demo-zh-CN.mp4" download="SSHAdmin-walkthrough-zh-CN.mp4">Download Chinese narration (1080p)</a></p>
+  </div>
+</section>
+
+<!-- ============ 功能 ============ -->
+<section class="section" id="features">
+  <div class="wrap">
+    <div class="head center reveal">
+      <p class="eyebrow">Features</p>
+      <h2>Less setup. More work done.</h2>
+      <p class="sub">Bring the small details of SSH into one practical workspace.</p>
+    </div>
+
+    <div class="row reveal">
+      <div class="copy">
+        <p class="eyebrow">Hosts</p>
+        <h3>Your SSH configuration,<br>finally easy to navigate</h3>
+        <p>Reads your existing <code>~/.ssh/config</code>. Organize with groups, tags, notes and search. Preview exactly what will change before adding or editing a host.</p>
+        <ul class="ticks">
+          <li>Works with existing configuration and preserves unrelated content</li>
+          <li>Preview diffs and keep the latest 20 automatic backups</li>
+          <li>Rolls back failed writes instead of leaving partially written files</li>
+        </ul>
+      </div>
+      <figure class="shot light"><div class="bar"><i></i><i></i><i></i></div><img src="../img/en/hosts-light.webp" alt="Host list in light mode" loading="lazy" width="1320" height="840"></figure>
+    </div>
+
+    <div class="row rev reveal">
+      <div class="copy">
+        <p class="eyebrow">Credentials</p>
+        <h3>Passwords and keys,<br>each in the right place</h3>
+        <p>Passwords and key passphrases stay in macOS Keychain. The app stores private key paths without copying or exporting keys. You verify the server fingerprint on first connection.</p>
+        <ul class="ticks">
+          <li>Save credentials and verify a new host in one workflow</li>
+          <li>Compare the fingerprint with a trusted source before accepting</li>
+          <li>Verify with the same fresh-connection conditions used by AI</li>
+        </ul>
+      </div>
+      <figure class="shot light"><div class="bar"><i></i><i></i><i></i></div><img src="../img/en/fingerprint-light.webp" alt="Verify a server fingerprint" loading="lazy" width="1320" height="840"></figure>
+    </div>
+
+    <div class="row reveal">
+      <div class="copy">
+        <p class="eyebrow">Terminal</p>
+        <h3>More than a terminal</h3>
+        <p>Tabs, split panes and search feel familiar. Run a task inside remote tmux and reconnect later, while the server and session keep running.</p>
+        <div class="tabs" role="tablist" aria-label="Terminal view">
+          <button class="on" data-img="../img/en/terminal-dark.webp" role="tab">Tabs and splits</button>
+          <button data-img="../img/en/tmux-attached-dark.webp" role="tab">tmux sessions</button>
+        </div>
+      </div>
+      <figure class="shot"><div class="bar"><i></i><i></i><i></i></div><img id="termShot" src="../img/en/terminal-dark.webp" alt="Terminal view" loading="lazy" width="1320" height="840"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 安全 ============ -->
+<section class="section sec" id="security">
+  <div class="wrap">
+    <div class="head center reveal">
+      <p class="eyebrow">Security</p>
+      <h2>Security you can inspect</h2>
+      <p class="sub">Saved passwords go only to the destination you verified, at authentication.</p>
+    </div>
+    <div class="cards">
+      <article class="card reveal"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><h4>Passwords stay in Keychain</h4><p>Saved passwords are excluded from configuration, databases, logs, command arguments and diagnostic exports.</p></article>
+      <article class="card reveal"><svg viewBox="0 0 24 24"><path d="M12 4a7 7 0 0 0-7 7v3"></path><path d="M12 8a3 3 0 0 0-3 3v5"></path><path d="M12 12v5c0 1.5-.4 2.7-1 4"></path><path d="M16 11a4 4 0 0 0-1-2.6"></path><path d="M19 11v2c0 2.5-.5 4.6-1.5 6.5"></path></svg><h4>You verify the fingerprint</h4><p>You verify the server fingerprint before trusting a first connection.</p></article>
+      <article class="card reveal"><svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"></path><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path></svg><h4>Bound to the destination</h4><p>Changes to the address, user, port or jump host pause saved-password use until you verify the binding again.</p></article>
+      <article class="card reveal"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"></path><path d="M9 12l2 2 4-4"></path></svg><h4>One controlled submission</h4><p>A private channel submits the password to the verified destination at most once per connection.</p></article>
+      <article class="card reveal"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="5"></rect><circle cx="16" cy="12" r="3"></circle></svg><h4>AI authorization per host</h4><p>Disable future credential use for a host at any time. Existing connections and tasks continue running.</p></article>
+      <article class="card reveal"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7" rx="2"></rect><rect x="3" y="13" width="18" height="7" rx="2"></rect><path d="M7 7.5h.01M7 16.5h.01"></path></svg><h4>Local operation</h4><p>No account or cloud service. No remote software or public keys installed, and no replacement of system ssh.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AI ============ -->
+<section class="section ai" id="ai">
+  <div class="wrap ai-in">
+    <div class="copy reveal">
+      <p class="eyebrow">Connect your AI</p>
+      <h2>Give your AI a<br><span class="grad">controlled way in</span></h2>
+      <p class="sub left">Your AI runs <code>sshadmin ssh &lt;alias&gt;</code>in its own terminal. The launcher adds no execution timeout or output limit and supports pipes and forwarding. SSHAdmin handles authentication without returning the saved password.</p>
+      <ol class="steps">
+        <li><b>Install the command</b><span>One click on the AI integration page creates a command link without changing your shell configuration.</span></li>
+        <li><b>Copy the instructions</b><span>Give the instructions to your AI. They contain no server addresses, accounts or passwords.</span></li>
+        <li><b>Let it work</b><span>Your AI can use authorized saved credentials and receive command output.</span></li>
+      </ol>
+    </div>
+    <div class="aiviz reveal" id="aiviz">
+      <div class="chat">
+        <div class="msg me"><small>You</small>Check the disk space on web-prod, please.</div>
+        <div class="msg bot"><small>AI assistant</small>I will connect with SSHAdmin and run a read-only check.</div>
+      </div>
+      <div class="term">
+        <div class="tb"><i></i><i></i><i></i><span>AI's own terminal</span></div>
+        <pre><span class="g">ai@mac</span>:<span class="b">~</span>$ <span id="aiCmd" data-text="sshadmin ssh web-prod 'df -h / /data'"></span><span class="caret"></span>
+<span id="aiOut" class="out"><span class="d">Filesystem      Size  Used Avail Use% Mounted on</span>
+/dev/sda1        98G   60G   34G  64% /
+/dev/sdb1       1.8T  1.4T  380G  79% /data</span></pre>
+        <div class="float">🔐 SSHAdmin submits the password during authentication</div>
+      </div>
+      <div class="msg bot done" id="aiDone"><small>AI assistant</small>Root is 64% used; /data has 380G free. Everything looks fine.</div>
+    </div>
+  </div>
+  <div class="wrap">
+    <figure class="shot wide light reveal"><div class="bar"><i></i><i></i><i></i></div><img src="../img/en/ai-light.webp" alt="AI integration page" loading="lazy" width="1320" height="840"></figure>
+  </div>
+</section>
+
+<!-- ============ 小功能 ============ -->
+<section class="section small">
+  <div class="wrap">
+    <div class="head center reveal">
+      <p class="eyebrow">More details</p>
+      <h2>Small features that help every day</h2>
+    </div>
+    <div class="grid">
+      <div class="g reveal"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"></rect><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"></path></svg><b>Native Apple Silicon</b><span>Built for M-series Macs, ready to use.</span></div>
+      <div class="g reveal"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg><b>Dark and light themes</b><span>Follow the system or choose your preference.</span></div>
+      <div class="g reveal"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M12 4v16"></path></svg><b>Tabs and splits</b><span>⌘T for a new tab. ⌘D to split a pane.</span></div>
+      <div class="g reveal"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg><b>Search terminal output</b><span>Find the line you need in long output.</span></div>
+      <div class="g reveal"><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"></path><path d="M3 13l9 5 9-5"></path></svg><b>tmux management</b><span>List, create, attach and rename sessions in one place.</span></div>
+      <div class="g reveal"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"></path><path d="M3 4v5h5"></path><path d="M12 8v5l3 2"></path></svg><b>Backup and restore</b><span>Automatic backups before changes, with a restore preview.</span></div>
+      <div class="g reveal"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg><b>Terminal history is off by default</b><span>Enable it when needed and clear it whenever you choose.</span></div>
+      <div class="g reveal"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"></path><path d="M9 12l2 2 4-4"></path></svg><b>Redacted diagnostic export</b><span>Troubleshoot without passwords, addresses or terminal contents.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 常见问题 ============ -->
+<section class="section faq" id="faq">
+  <div class="wrap narrow">
+    <div class="head center reveal">
+      <p class="eyebrow">FAQ</p>
+      <h2>Questions you may have</h2>
+    </div>
+    <div class="qa reveal">
+      <details><summary>Does it read or upload server information?</summary><p>It reads your SSH configuration locally and connects to your own servers with system OpenSSH. SSHAdmin has no account service or cloud upload.</p></details>
+      <details><summary>Do I need to install anything on the server?</summary><p>SSHAdmin does not install remote software or deploy public keys. The optional tmux features require tmux to be installed on the server already.</p></details>
+      <details><summary>How are saved passwords protected?</summary><p>Passwords stay in macOS Keychain and are submitted only during authentication to your verified destination. SSHAdmin also supports private keys if you prefer key authentication.</p></details>
+      <details><summary>Does my AI need a plugin?</summary><p>No plugin is required. Install the sshadmin command on the AI integration page and copy the instructions to an AI that can run local terminal commands. SSHAdmin does not modify other AI tools' global settings.</p></details>
+      <details><summary>Does it replace system ssh?</summary><p>System ssh stays available.<code>sshadmin ssh</code> is an additional entry point.</p></details>
+      <details><summary>Which computers are supported?</summary><p>The current build requires macOS 12 or later on an Apple Silicon (M-series) Mac.</p></details>
+      <details><summary>Is the application open source?</summary><p>The desktop application source is private.<a href="https://github.com/DFBTCice/sshadmin">The GitHub product repository</a>provides the website, user documentation, downloads and issue reporting.</p></details>
+    <details><summary>Can I switch languages?</summary><p>Choose Follow system, 简体中文 or English in Settings. The choice is remembered and active terminals stay connected. This website, guide and narrated demo also offer Chinese and English.</p></details></div>
+  </div>
+</section>
+
+<!-- ============ 下载 ============ -->
+<section class="section dl" id="download">
+  <div class="wrap">
+    <div class="dl-card reveal">
+      <img src="../img/icon.png" alt="" width="108" height="108">
+      <div class="dl-main">
+        <h2>Download SSHAdmin</h2>
+        <p>Version 0.2.0 · macOS 12 or later · Apple Silicon (M series)</p>
+        <div class="cta">
+          <a class="btn btn-lg" href="../downloads/SSHAdmin-0.2.0-macos-arm64.dmg" download="">Download installer (.dmg)</a>
+          <a class="btn btn-lg btn-ghost" href="../downloads/SSHAdmin-0.2.0-macos-arm64.zip" download="">Download archive (.zip)</a>
+          <a class="btn btn-lg btn-ghost" href="manual.html">Read the user guide</a>
+        <a class="btn btn-lg btn-ghost" href="../downloads/SSHAdmin-0.2.0-guides.zip">Download offline guides (中文 / English)</a></div>
+        <p class="note">This locally signed build is not notarized by Apple. If macOS blocks the first launch, follow its prompt under System Settings → Privacy &amp; Security → Open Anyway.</p>
+        <details class="sums"><summary>File checksums (SHA-256)</summary>
+          <p><b>.dmg</b> f452f74a0d2dbdf907e54f1220951122e396187806189d2e4a62ae624330ee91</p>
+          <p><b>.zip</b> 714ab614b4f90c52831544f1d1abcf37320ddd4b312985980b5013c0b9b248b0</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a class="logo" href="#top"><img src="../img/icon.png" alt="" width="28" height="28"><span>SSHAdmin</span></a>
+    <p>Server management, with you in control.</p>
+    <nav><a href="#film">Demo</a><a href="manual.html">User guide</a><a href="#download">Download</a><a href="https://github.com/DFBTCice/sshadmin">GitHub</a><a href="https://github.com/DFBTCice/sshadmin/issues">Report an issue</a></nav>
+  </div>
+</footer>
+
+<script src="../app.js"></script>
+
+
+</body></html>

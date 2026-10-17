@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SSHAdmin User Guide</title>
+<style>
+:root{--bg:#f5f7fa;--ink:#202b3b;--muted:#617086;--line:#dce3ec;--blue:#1760ac;--nav:252px}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.85 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}a{color:var(--blue);text-underline-offset:3px}aside{position:fixed;inset:0 auto 0 0;width:var(--nav);padding:30px 18px;background:#152a43;color:#fff;overflow:auto}.brand{font-size:24px;font-weight:750;letter-spacing:.3px}.sub{font-size:13px;color:#b5c8df;margin:5px 0 23px}nav a{display:flex;gap:10px;color:#dce8f6;padding:8px 9px;margin:3px 0;border-radius:7px;font-size:13px;line-height:1.7;text-decoration:none}nav a:hover,nav a:focus{background:#294565;color:white}nav span{color:#8cabcf;font:12px/1.9 ui-monospace,monospace;flex-shrink:0}.nav-footer{margin:26px 9px 0;font-size:12px;color:#aac1dc}.nav-footer button{border:1px solid #58728e;background:none;border-radius:6px;padding:6px 10px;color:white;cursor:pointer}main{margin-left:var(--nav);padding:44px 52px 80px;max-width:1320px}header{margin-bottom:30px;border-bottom:1px solid var(--line);padding-bottom:26px}.eyebrow{color:var(--blue);font-size:12px;font-weight:700;letter-spacing:1.3px}h1{font-size:38px;line-height:1.4;margin:8px 0 12px;letter-spacing:-.7px}.lead{color:var(--muted);font-size:17px;margin:0}.meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}.meta span{background:#e7edf6;color:#416080;border-radius:5px;padding:2px 9px;font-size:12px}article>p:first-child{font-size:13px;color:var(--muted)}h2{font-size:25px;line-height:1.5;margin:48px 0 22px;padding-top:12px;border-top:2px solid #d6e2ef}h3{font-size:19px;margin:30px 0 12px;line-height:1.6}p{margin:12px 0}ul,ol{padding-left:25px}li{margin:6px 0}strong{font-weight:650}code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:#e8edf4;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}pre{position:relative;background:#192b40;color:#edf4fc;padding:22px 20px;border-radius:9px;overflow:auto;line-height:1.75;font-size:14px;margin:15px 0 20px}pre code{background:none;color:inherit;padding:0;border-radius:0;overflow-wrap:normal}pre button{position:absolute;right:9px;top:8px;color:#c7d8ed;background:#29435f;border:1px solid #46627e;border-radius:4px;font-size:11px;padding:3px 7px;cursor:pointer}.table-wrap{overflow:auto;margin:14px 0 23px;border:1px solid var(--line);border-radius:8px;background:#fff}table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.75}th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#eaf0f7;font-weight:650;white-space:nowrap}tr:last-child td{border-bottom:0}tbody tr:nth-child(even){background:#f8fafc}td:first-child{min-width:160px}td code{font-size:12px}a[id]{display:block;scroll-margin-top:24px}blockquote{border-left:3px solid #4e84ba;margin:15px 0;padding:5px 15px;background:#eef4fb}.end{margin-top:45px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);padding-top:15px}
+@media(max-width:1000px){:root{--nav:220px}main{padding:30px 25px}h1{font-size:32px}}@media(max-width:720px){aside{position:static;width:auto;padding:20px}nav{display:grid;grid-template-columns:1fr 1fr}nav a{font-size:12px}.nav-footer{display:none}main{margin:0;padding:25px 18px}h1{font-size:30px}h2{font-size:23px}pre{font-size:12px}th,td{padding:9px 10px}}
+@media print{aside,pre button{display:none}body{background:white;font-size:11pt}main{margin:0;padding:0;max-width:none}h2,h3{break-after:avoid}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f3f5f7;color:#111;font-size:9pt}table{font-size:9pt}.table-wrap{overflow:visible}tr{break-inside:avoid}header{padding-bottom:12px}h1{font-size:26pt}a{color:inherit}a[id]{height:0}}
+</style><link rel="canonical" href="https://dfbtcice.github.io/sshadmin/en/manual.html"><link rel="alternate" href="https://dfbtcice.github.io/sshadmin/zh/manual.html" hreflang="zh-Hans"><link rel="alternate" href="https://dfbtcice.github.io/sshadmin/en/manual.html" hreflang="en"><link rel="alternate" href="https://dfbtcice.github.io/sshadmin/manual.html" hreflang="x-default"><script src="../language.js"></script><style>.language-switch{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:18px;font-size:12px}.language-switch a{color:inherit;padding:4px 6px;text-decoration:none;border:1px solid transparent;border-radius:5px}.language-switch a[aria-current]{border-color:#8cabcf}.language-switch a:focus-visible{outline:2px solid #8cabcf}</style></head><body>
+<aside><div class="language-switch" role="group" aria-label="Language"><a data-language="zh-CN" href="../zh/manual.html" lang="zh-Hans">简体中文</a><a data-language="en" href="../en/manual.html" lang="en" aria-current="page">English</a><a data-language="system" href="../manual.html?lang=system">Auto</a></div><div class="brand">SSHAdmin</div><div class="sub">Offline user guide · 0.2.0</div><nav aria-label="Chapters"><a href="#quickstart"><span>01</span>Quick start</a><a href="#concepts"><span>02</span>Key concepts</a><a href="#hosts"><span>03</span>Host management</a><a href="#credentials"><span>04</span>Passwords and private keys</a><a href="#terminal"><span>05</span>Terminals and history</a><a href="#tmux"><span>06</span>Persistent remote sessions</a><a href="#cli"><span>07</span>Complete CLI reference</a><a href="#ai"><span>08</span>Connect your local AI</a><a href="#recipes"><span>09</span>Common recipes</a><a href="#settings"><span>10</span>Settings and data</a><a href="#troubleshooting"><span>11</span>Troubleshooting</a><a href="#maintenance"><span>12</span>Update and uninstall</a><a href="#references"><span>13</span>Verification and references</a></nav><div class="nav-footer">⌘F to find a feature or error<br>Available offline<br><br><button onclick="window.print()">Print / Save PDF</button><br><br><a href="index.html" style="color:#dce8f6">← Website</a></div></aside>
+<main><header><div class="eyebrow">USER GUIDE</div><h1>SSHAdmin User Guide</h1><p class="lead">Manage connections, work in terminals, keep remote tasks running and connect your local AI.</p><div class="meta"><span>macOS</span><span>Chinese / English</span><span>13 chapters</span><span>Complete command reference</span></div></header><article><p>For SSHAdmin for macOS 0.2.0, CLI schema 1. Examples use the host alias <code>dev-server</code> and tmux session <code>work</code>; replace them with your own values. Do not type the angle brackets around placeholders such as <code>&lt;alias&gt;</code>.</p>
+<p>Start with the quick start, then use the relevant chapter when you need details. The installed program's <code>--help</code> describes its actual command contract.</p>
+<a id="quickstart"></a>
+<h2>1. Quick start</h2>
+<h3>1.1 Connect using an alias</h3>
+<p>Run these commands in macOS Terminal, another terminal, or your local AI's terminal:</p>
+<pre><code class="language-bash">sshadmin ssh dev-server
+</code></pre>
+<p>Commands you enter after login run on the server. Type <code>exit</code> to leave. To run a short check and return to your Mac:</p>
+<pre><code class="language-bash">sshadmin ssh dev-server 'hostname; id -un'
+</code></pre>
+<p>The remote command's exit code is returned; success is normally <code>0</code>.</p>
+<h3>1.2 Find existing hosts</h3>
+<p>Open <strong>Hosts</strong>. SSHAdmin reads concrete aliases from <code>~/.ssh/config</code> and its <code>Include</code> files. You can also run:</p>
+<pre><code class="language-bash">sshadmin list
+</code></pre>
+<h3>1.3 Add a password host</h3>
+<ol><li>Choose <strong>Hosts → Add</strong> and enter an alias, address, username and port.</li><li>Select password authentication and enter the password, or save it later in host details.</li><li>Choose <strong>Preview changes</strong>, inspect the diff, and apply it.</li><li>Run <strong>Test and trust</strong>. Compare the fingerprint with a trusted source before accepting it. Complete any macOS Keychain authorization yourself.</li><li>Allow AI credential use for this host and verify a fresh, non-interactive connection.</li><li>Use <code>sshadmin ssh &lt;alias&gt;</code> without repeatedly entering the saved password.</li></ol>
+<h3>1.4 Keep a task running after closing the app</h3>
+<p>Open <strong>tmux</strong>, select the host, enable management, enter a session name, then choose <strong>Create and attach</strong>. Start the task inside that session. Close its terminal tab or press <code>Ctrl+B</code>, release, then <code>D</code> to detach. Later, select the same host and session and choose <strong>Attach</strong>.</p>
+<p><strong>End</strong> terminates a remote session; it is not a detach button. The remote server, tmux and the task must remain running.</p>
+<h3>1.5 Command quick reference</h3>
+<div class="table-wrap"><table><thead><tr><th>Goal</th><th>Command</th></tr></thead><tbody><tr><td>List hosts</td><td><code>sshadmin list</code></td></tr><tr><td>Show host details</td><td><code>sshadmin show dev-server</code></td></tr><tr><td>Log in</td><td><code>sshadmin ssh dev-server</code></td></tr><tr><td>Run a command</td><td><code>sshadmin ssh dev-server 'df -h'</code></td></tr><tr><td>Verify a fresh connection</td><td><code>sshadmin doctor dev-server --connect</code></td></tr><tr><td>Get structured output</td><td><code>sshadmin exec dev-server -c 'hostname' --json</code></td></tr><tr><td>Attach to existing tmux</td><td><code>sshadmin connect dev-server --tmux work</code></td></tr><tr><td>Read help</td><td><code>sshadmin --help</code>, <code>sshadmin ssh --help</code></td></tr></tbody></table></div>
+<a id="concepts"></a>
+<h2>2. Understand the main concepts</h2>
+<h3>2.1 The six pages</h3>
+<div class="table-wrap"><table><thead><tr><th>Page</th><th>Purpose</th></tr></thead><tbody><tr><td>Hosts</td><td>Connections, groups, tags, notes, authentication checks and terminal launch</td></tr><tr><td>Terminal</td><td>Local shells, remote SSH, tabs, split panes and output search</td></tr><tr><td>tmux</td><td>Detect remote tmux; create, attach, rename and end sessions</td></tr><tr><td>Credentials</td><td>Saved-credential index, linked hosts and deletion of unused entries</td></tr><tr><td>AI integration</td><td>Readiness, copyable instructions and CLI link installation</td></tr><tr><td>Settings</td><td>Language, appearance, fonts, history, backup, restore and diagnostics</td></tr></tbody></table></div>
+<h3>2.2 Choose the right connection entry point</h3>
+<div class="table-wrap"><table><thead><tr><th>Entry point</th><th>Typical use</th><th>Saved credentials</th></tr></thead><tbody><tr><td><code>ssh dev-server</code></td><td>Ordinary system SSH</td><td>Does not read SSHAdmin's saved passwords</td></tr><tr><td><code>sshadmin ssh dev-server</code></td><td>Daily work, AI terminals, pipes, forwarding and long tasks</td><td>Submitted when authorized and bound to the destination</td></tr><tr><td><code>sshadmin exec dev-server -c 'command' --json</code></td><td>One command with a structured result</td><td>Used when its requirements are met</td></tr><tr><td><code>sshadmin connect dev-server</code></td><td>Human interactive login or existing tmux attachment</td><td>Interactive handling is available</td></tr><tr><td>Open terminal in the app</td><td>Work inside SSHAdmin</td><td>Used when its requirements are met</td></tr></tbody></table></div>
+<p>The CLI runs independently of the GUI and ultimately uses <code>/usr/bin/ssh</code>. Automatic password submission does not convert a server to public-key authentication. SSHAdmin does not install public keys or change the remote SSH service.</p>
+<h3>2.3 Alias, display name and address</h3>
+<p>The <strong>alias</strong> is the exact, case-sensitive <code>Host</code> name used in commands. The <strong>display name</strong> is a friendly UI label. The <strong>address</strong> is the real <code>HostName</code>, an IP or domain. Use <code>sshadmin list</code> to find the alias rather than guessing from a display name.</p>
+<a id="hosts"></a>
+<h2>3. Manage hosts</h2>
+<h3>3.1 Discover existing configuration</h3>
+<p>On first launch, SSHAdmin reads configuration without connecting or rewriting it. This defines the alias <code>dev-server</code>:</p>
+<pre><code class="language-sshconfig">Host dev-server
+    HostName 10.0.1.21
+    User deploy
+    Port 22
+</code></pre>
+<p>A previous <code>ssh user@IP</code> command, a <code>known_hosts</code> entry, or a private key file alone does not define a managed alias. Wildcards such as <code>Host *</code> supply inherited options, not a list of all servers. With dynamic <code>Match</code> rules, the UI shows statically available information; OpenSSH resolves the effective configuration at connection time.</p>
+<p>External configuration edits trigger a refresh. Re-enter the page or restart if needed and inspect parser warnings.</p>
+<h3>3.2 Add a host</h3>
+<div class="table-wrap"><table><thead><tr><th>Field</th><th>What to enter</th></tr></thead><tbody><tr><td>Alias</td><td>A memorable name, such as <code>dev-server</code></td></tr><tr><td>Display name</td><td>Optional friendly label; commands still use the alias</td></tr><tr><td>Hostname / address</td><td>Server IP or domain</td></tr><tr><td>User</td><td>Remote account; empty may inherit a value or use the local username</td></tr><tr><td>Port</td><td>Usually 22; inherited configuration can change the effective port</td></tr><tr><td>Authentication</td><td>Existing configuration, password, private key file or SSH Agent</td></tr><tr><td>Private key paths</td><td>Existing private files, one per line; not <code>.pub</code> files</td></tr><tr><td>IdentityAgent</td><td>Optional custom agent socket</td></tr><tr><td>Jump host</td><td><code>ProxyJump</code>, for example the existing alias <code>bastion</code></td></tr><tr><td>Group, tags and notes</td><td>Organization metadata; tags are comma-separated</td></tr><tr><td>Enable tmux management</td><td>Enables app management; does not install tmux remotely</td></tr></tbody></table></div>
+<p>New managed blocks go into <code>~/.ssh/sshadmin.conf</code>; SSHAdmin adds an <code>Include</code> in the main configuration when needed. Every app-managed write has a preview and automatic backup.</p>
+<h3>3.3 Edit and rename</h3>
+<p>Select a host, choose <strong>Edit</strong>, preview and apply. Existing hosts are edited in their original source file. A shared block can affect several aliases; use the option to edit only the selected alias when appropriate.</p>
+<p>Use <strong>Rename</strong> to change the command alias, and <strong>Edit</strong> for the display name. Update your commands and AI instructions after renaming. If a source file changes externally, reload and generate a fresh preview. Destination or credential changes usually require <strong>Test and trust</strong> again.</p>
+<h3>3.4 Delete</h3>
+<p>Select <strong>Delete</strong>, inspect the diff, then confirm. This removes local connection configuration, not a remote server or its files. The dialog controls whether its Keychain credential is also removed. Credentials still referenced by other hosts are retained.</p>
+<h3>3.5 Search and organize</h3>
+<p>Search aliases, addresses, users and tags; filter by group, tags or recent use. Select a host for details or double-click to open its terminal. Language changes do not alter your aliases, notes, groups, tags or SSH configuration.</p>
+<a id="credentials"></a>
+<h2>4. Passwords, private keys and credentials</h2>
+<h3>4.1 Save or update a password</h3>
+<p>In host details, choose <strong>Save password…</strong>, select login password, save to Keychain, then <strong>Test and trust</strong>. Saved passwords are not displayed again. Update the entry after a server password change and verify it. Saving here does not change the remote account password.</p>
+<h3>4.2 Use a private key</h3>
+<p>Edit the host, select private key authentication, choose the existing file path, preview and apply. SSHAdmin stores the path without copying or exporting the key; moving the file can break login. System SSH reads the original file when authenticating.</p>
+<p>For an encrypted private key, save a <strong>key passphrase</strong> with the corresponding key path. A key passphrase unlocks that key; it is different from a server login password.</p>
+<h3>4.3 Use an SSH Agent</h3>
+<p>Choose SSH Agent authentication and ensure that the app or AI process can access your agent. <code>ssh-add -l</code> lists agent key fingerprints. An unavailable agent, an unloaded key or hardware confirmation still requires your action.</p>
+<h3>4.4 Verification and AI readiness</h3>
+<p><strong>Test and trust</strong> makes a real connection and asks you to verify an unknown fingerprint. <strong>AI ready</strong> records a successful fresh, non-interactive connection with strict host checking. It is not continuous monitoring; later network or credential changes may cause failure.</p>
+<h3>4.5 Update, unlink or delete</h3>
+<div class="table-wrap"><table><thead><tr><th>Operation</th><th>Effect</th></tr></thead><tbody><tr><td>Update</td><td>Replaces a saved password/passphrase and requires verification</td></tr><tr><td>Unlink</td><td>Stops this host using the entry; the Keychain item remains</td></tr><tr><td>Delete</td><td>Removes the Keychain item, but refuses while another host references it</td></tr></tbody></table></div>
+<p>The Credentials page shows type, linked hosts, item status and update time. It cannot display or export password plaintext. Unlink a credential before deleting an unused entry. Metadata for a host whose configuration disappeared can remain orphaned and may be relinked when the alias returns.</p>
+<h3>4.6 AI authorization and jump hosts</h3>
+<p>The per-host AI switch controls future saved-credential use by SSHAdmin's automation entry points. Disabling it does not terminate existing connections, revoke keys, or prevent ordinary system SSH.</p>
+<p>A jump host and a destination involve separate authentication. A destination's saved password is not submitted to a jump host challenge. Prepare jump-host authentication yourself or use an interactive terminal for OTPs and hardware confirmation.</p>
+<a id="terminal"></a>
+<h2>5. Terminals, shortcuts and history</h2>
+<h3>5.1 Open and switch panes</h3>
+<p><strong>Hosts → Open terminal</strong> creates SSH. <strong>+</strong> in the tab bar opens a local terminal; its adjacent menu selects a host. Pane controls split horizontally or vertically, and each pane title is a target menu. Changing a pane's target replaces that pane's connection after confirmation when needed; other panes continue.</p>
+<p>Check the pane title before operating. Use <code>hostname</code> and <code>id -un</code> if you are unsure whether you are on the Mac or the server. Switching the application language updates labels without replacing active terminal sessions.</p>
+<h3>5.2 Shortcuts</h3>
+<div class="table-wrap"><table><thead><tr><th>Shortcut</th><th>Action</th></tr></thead><tbody><tr><td><code>⌘T</code></td><td>New local terminal tab</td></tr><tr><td><code>⌘D</code> / <code>⇧⌘D</code></td><td>Split side by side / vertically</td></tr><tr><td><code>⌘W</code></td><td>Close the active pane, or its tab if it has one pane</td></tr><tr><td><code>⇧⌘W</code></td><td>Close the window</td></tr><tr><td><code>⌘1</code> … <code>⌘9</code></td><td>Select a tab</td></tr><tr><td><code>⌘[</code> / <code>⌘]</code></td><td>Move between panes in the current tab</td></tr><tr><td><code>⌘F</code></td><td>Search scrollback; Enter next, Shift+Enter previous</td></tr><tr><td><code>⌘K</code></td><td>Clear terminal display/scrollback; does not delete remote files or shell history</td></tr><tr><td><code>⌘+</code> / <code>⌘-</code></td><td>Increase / decrease font size</td></tr><tr><td><code>⌘C</code> / <code>⌘V</code></td><td>Copy selection / paste</td></tr><tr><td><code>Ctrl+C</code></td><td>Usually interrupt the foreground program</td></tr></tbody></table></div>
+<p>Multiline paste asks for confirmation by default because newlines can execute commands.</p>
+<h3>5.3 Disconnect and restart</h3>
+<p>Closing a normal SSH pane disconnects it. A foreground task may end; independently detached processes may survive. Do not infer a task's state from the disconnection alone.</p>
+<p>Restart restores tabs, split layout and connection targets, without reconnecting or replaying commands. Choose <strong>Connect</strong> to start a new connection.</p>
+<h3>5.4 Optional history</h3>
+<p><strong>Settings → Terminal history → Save terminal history</strong> is off by default. It saves read-only screen content from normal terminals, not running processes, shell command history, tmux panes or alternate screens such as vim.</p>
+<p>The default is 2,000 lines per pane, configurable from 200 to 10,000, with a 1 MiB per-pane and 32 MiB total cap. History stays locally, unencrypted, and may contain echoed commands or sensitive program output. Turning history off deletes saved history. Closing a pane/tab removes its history. Clearing does not stop programs; with saving enabled, later output is saved again. The most recent roughly 2–10 seconds may be lost after an abnormal exit.</p>
+<a id="tmux"></a>
+<h2>6. Keep remote tasks in tmux</h2>
+<h3>6.1 Requirements</h3>
+<p>Install tmux on the remote server; installing it only on your Mac is insufficient. SSHAdmin does not install it. Check without changing the server:</p>
+<pre><code class="language-bash">sshadmin ssh dev-server 'command -v tmux; tmux -V'
+</code></pre>
+<h3>6.2 Manage sessions in the app</h3>
+<p>Select the host on the tmux page, enable management, then create and attach a session before starting a task. An inactive tmux server can simply mean that no sessions exist. The list shows names, IDs, windows, attached clients and creation time. After a successful query it refreshes about every five seconds while the page is visible and the window focused; refresh manually after errors.</p>
+<p>Zero attached clients usually means nobody is viewing the session. Rename preserves the task. Names allow 1–64 ASCII letters, digits, underscores or hyphens, without spaces, dots or colons.</p>
+<h3>6.3 What survives closing the app?</h3>
+<div class="table-wrap"><table><thead><tr><th>Event</th><th>Result</th></tr></thead><tbody><tr><td>App/tab closed, Mac offline or shut down</td><td>Reattach if the remote tmux and task keep running</td></tr><tr><td>Ordinary SSH task outside tmux</td><td>No persistence guarantee; it cannot be recovered through tmux</td></tr><tr><td>End session, or exit its last shell</td><td>Session and its processes may end</td></tr><tr><td>Server restarts, tmux is killed or task exits</td><td>No process restoration</td></tr><tr><td>Remote WSL shuts down or its Windows host restarts</td><td>Its tmux process does not survive</td></tr></tbody></table></div>
+<p>Enabling management does not move a task already running outside tmux into it.</p>
+<h3>6.4 Use tmux from your own terminal</h3>
+<pre><code class="language-bash">sshadmin ssh dev-server 'tmux list-sessions'
+sshadmin ssh -t dev-server 'tmux new-session -s work'
+sshadmin connect dev-server --tmux work
+sshadmin connect dev-server --tmux '$3'
+sshadmin ssh -t dev-server 'tmux attach-session -r -t =work'
+</code></pre>
+<p>The last command attaches a read-only client. Single quotes keep the local shell from expanding <code>$3</code>. These run remote tmux; there is no <code>sshadmin tmux</code> subcommand.</p>
+<h3>6.5 tmux keys</h3>
+<p>With its default configuration, press <code>Ctrl+B</code>, release, then <code>D</code> to detach, <code>C</code> for a window, <code>N</code>/<code>P</code> for next/previous, <code>[</code> for copy mode (usually <code>Q</code> to leave), or <code>?</code> for help. These differ from SSHAdmin's Command shortcuts. See the <a href="https://github.com/tmux/tmux/wiki/Getting-Started">official tmux guide</a>.</p>
+<a id="cli"></a>
+<h2>7. Complete SSHAdmin command reference</h2>
+<h3>7.1 Install the command and set PATH</h3>
+<p>Choose <strong>AI integration → Install sshadmin command</strong>, or run:</p>
+<pre><code class="language-bash">/Applications/SSHAdmin.app/Contents/MacOS/sshadmin install-cli
+command -v sshadmin
+sshadmin --version
+</code></pre>
+<p>Installation creates <code>~/.local/bin/sshadmin</code> without editing shell configuration. If needed, add the directory to your current terminal:</p>
+<pre><code class="language-bash">export PATH="$HOME/.local/bin:$PATH"
+</code></pre>
+<p>For persistence, add it once to your own appropriate shell configuration, commonly <code>~/.zshrc</code> or <code>~/.zprofile</code>, and reopen the terminal. An AI tool may use a different environment. The absolute application path works without PATH.</p>
+<h3>7.2 All commands</h3>
+<div class="table-wrap"><table><thead><tr><th>Command</th><th>Options</th><th>Purpose</th></tr></thead><tbody><tr><td><code>list</code></td><td><code>--json</code></td><td>List local hosts</td></tr><tr><td><code>show &lt;alias&gt;</code></td><td><code>--json</code></td><td>Show connection details</td></tr><tr><td><code>doctor &lt;alias&gt;</code></td><td><code>--connect</code>, <code>--json</code></td><td>Diagnose locally; optionally make a real connection</td></tr><tr><td><code>ssh …</code></td><td>Ordinary SSH arguments</td><td>Pass-through access</td></tr><tr><td><code>exec &lt;alias&gt;</code></td><td><code>-c/--command</code>, <code>--json</code>, <code>--timeout</code>, <code>--stdin</code></td><td>One bounded non-interactive execution</td></tr><tr><td><code>connect &lt;alias&gt;</code></td><td><code>--tmux</code></td><td>Interactive login or existing session attachment</td></tr><tr><td><code>trust &lt;alias&gt;</code></td><td><code>--json</code></td><td>Human fingerprint verification and connection tests</td></tr><tr><td><code>credential set &lt;alias&gt;</code></td><td><code>--kind</code>, <code>--identity</code></td><td>Save password or key passphrase interactively</td></tr><tr><td><code>credential unlink &lt;alias&gt;</code></td><td>None</td><td>Unlink a credential</td></tr><tr><td><code>credential delete &lt;alias&gt;</code></td><td>None</td><td>Unlink, then attempt Keychain deletion</td></tr><tr><td><code>install-cli</code> / <code>uninstall-cli</code></td><td><code>--dir</code>, <code>--json</code></td><td>Create/remove the app's command link</td></tr><tr><td><code>help [command]</code>, <code>--help</code>, <code>-h</code></td><td>None</td><td>Help</td></tr><tr><td><code>--version</code>, <code>-V</code></td><td>None</td><td>Application version</td></tr></tbody></table></div>
+<p>There are no <code>add</code>, <code>remove</code>, <code>tmux</code>, <code>backup</code> or <code>credential get</code> subcommands. Use the corresponding GUI pages. Commands that require a managed host take an exact alias. The pass-through <code>ssh</code> launcher can also hand unmanaged destinations to system SSH, without acquiring a saved password for them.</p>
+<p>Put <code>--lang system</code>, <code>--lang zh-CN</code> or <code>--lang en</code> <strong>before</strong> the subcommand for a one-off message language:</p>
+<pre><code class="language-bash">sshadmin --lang en list --json
+sshadmin --lang zh-CN doctor dev-server
+sshadmin --lang en ssh dev-server 'hostname'
+</code></pre>
+<p>Otherwise messages follow the saved app preference and system language. JSON keys, error codes, user data and remote output keep the same contract. Arguments after <code>ssh</code> belong to OpenSSH, so a remote <code>--lang</code> argument passes through.</p>
+<h3>7.3 list</h3>
+<pre><code class="language-bash">sshadmin list
+sshadmin list --json
+</code></pre>
+<p>Reads local configuration without connecting. <code>ai_ready</code> records successful unattended verification; false may mean not yet verified rather than offline.</p>
+<h3>7.4 show</h3>
+<pre><code class="language-bash">sshadmin show dev-server
+sshadmin show dev-server --json
+</code></pre>
+<p>Shows connection, source, authentication and verification details without passwords. Addresses and usernames remain connection information; this is not the anonymous diagnostics export.</p>
+<h3>7.5 doctor</h3>
+<pre><code class="language-bash">sshadmin doctor dev-server
+sshadmin doctor dev-server --connect
+sshadmin doctor dev-server --connect --json
+</code></pre>
+<p>Only <code>--connect</code> makes a real connection and records the result. It cannot approve an unknown fingerprint or solve an OTP for you; use <strong>Test and trust</strong> or an interactive entry point.</p>
+<h3>7.6 ssh</h3>
+<pre><code class="language-bash">sshadmin ssh dev-server
+sshadmin ssh dev-server 'hostname; id -un; df -h'
+sshadmin ssh -t dev-server top
+sshadmin ssh -o ConnectTimeout=10 -o ServerAliveInterval=30 -o ServerAliveCountMax=3 dev-server
+sshadmin ssh -v dev-server 'hostname'
+</code></pre>
+<p>OpenSSH supplies <code>-t</code> (PTY), <code>-T</code> (no PTY), <code>-v</code> (diagnostics), and <code>-o</code> options. <code>ConnectTimeout</code> limits connection establishment, not the remote task's full runtime. SSHAdmin adds no execution or output limit to this launcher; the network, server and calling tool can impose their own limits.</p>
+<p>Changing the destination with <code>-p</code>, <code>-l</code>, <code>-J</code> or related options can trigger <code>CREDENTIAL_BINDING_CHANGED</code>. Make intended changes in the app and verify again. Single-quote remote commands when remote variable expansion is intended: in <code>'echo "$HOME"'</code>, the remote shell expands <code>$HOME</code>. Do not concatenate untrusted input into shell commands. See <a href="https://man.openbsd.org/ssh">OpenSSH documentation</a>.</p>
+<h3>7.7 exec</h3>
+<pre><code class="language-bash">sshadmin exec dev-server --command 'df -h'
+sshadmin exec dev-server -c 'hostname; id -un' --json
+sshadmin exec dev-server -c 'uname -a' --timeout 30 --json
+printf 'hello\n' | sshadmin exec dev-server -c 'wc -c' --stdin --json
+</code></pre>
+<p>The command is one required string argument. Timeout defaults to 60 seconds; <code>0</code> removes the local execution timeout. Stdin forwarding is off unless <code>--stdin</code> is set. <code>--json</code> returns one JSON object rather than live stdout.</p>
+<p>There is no interactive PTY. Use <code>ssh -t</code> or the GUI for vim, top or interactive sudo. Combined stdout/stderr processing is capped at <strong>8 MiB</strong>, even with timeout zero. Use the launcher for continuous output or large streams.</p>
+<p>Timeout, cancellation, output limits and network loss do not roll back remote operations. Inspect actual remote state before retrying.</p>
+<h3>7.8 JSON and exit codes</h3>
+<div class="table-wrap"><table><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>ok</code></td><td>Success</td></tr><tr><td><code>stdout</code>, <code>stderr</code></td><td>Captured streams; stderr may include SSH diagnostics</td></tr><tr><td><code>stdout_encoding</code>, <code>stderr_encoding</code></td><td><code>utf8</code>, or <code>base64</code> for binary data</td></tr><tr><td><code>remote_exit_code</code></td><td>Known remote exit code, or null when uncertain</td></tr><tr><td><code>ssh_exit_code</code></td><td>SSH process exit code</td></tr><tr><td><code>result_certainty</code></td><td><code>completed</code>, <code>not_started</code>, or <code>unknown</code></td></tr><tr><td><code>error.code</code>, <code>error.message</code></td><td>Stable machine code and human explanation</td></tr><tr><td><code>error.action_required</code></td><td>Suggested next step, possibly null</td></tr><tr><td><code>truncated</code>, <code>duration_ms</code></td><td>Truncation flag and duration</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Exit code</th><th>Meaning</th></tr></thead><tbody><tr><td>0</td><td>Success</td></tr><tr><td>1</td><td>Application error, or remote exit 1</td></tr><tr><td>2</td><td>Usage error, or remote exit 2</td></tr><tr><td>124</td><td>Local exec timeout</td></tr><tr><td>125</td><td>Exec output limit</td></tr><tr><td>130</td><td>Exec cancellation</td></tr><tr><td>255</td><td>SSH failure or remote 255; may be uncertain</td></tr><tr><td>Other 1–254</td><td>Usually the remote nonzero exit code</td></tr></tbody></table></div>
+<p>A remote program can itself return 124, 125 or 130. Automation should inspect <code>error.code</code> and <code>result_certainty</code>, not just a number. The <code>ssh</code> launcher has no JSON envelope and follows ordinary SSH/remote exit semantics after connecting.</p>
+<h3>7.9 connect</h3>
+<pre><code class="language-bash">sshadmin connect dev-server
+sshadmin connect dev-server --tmux work
+sshadmin connect dev-server --tmux '$3'
+</code></pre>
+<p>Runs in the current interactive terminal. <code>--tmux</code> attaches an existing session; it does not create one. Arbitrary SSH options and <code>--json</code> are not accepted here.</p>
+<h3>7.10 trust</h3>
+<pre><code class="language-bash">sshadmin trust dev-server
+sshadmin trust dev-server --json
+</code></pre>
+<p>Requires an interactive terminal for human fingerprint confirmation when needed, then tests interactive and unattended connections. <code>--json</code> does not remove the human trust step. AI must not blindly accept new fingerprints.</p>
+<h3>7.11 credential</h3>
+<pre><code class="language-bash">sshadmin credential set dev-server
+sshadmin credential set dev-server --kind password
+sshadmin credential set dev-server --kind passphrase --identity "$HOME/.ssh/id_ed25519"
+sshadmin trust dev-server
+sshadmin credential unlink dev-server
+sshadmin credential delete dev-server
+</code></pre>
+<p>Saving reads a hidden value twice from a real terminal. There is no password argument, piped password input or credential <code>--json</code> mode. Unlink retains the Keychain item. Delete first unlinks this host, then tries to delete the item; references from other hosts keep it. Read the message or Credentials page rather than inferring complete deletion from exit 0. Delete unlinked orphan entries from the Credentials page.</p>
+<h3>7.12 install-cli and uninstall-cli</h3>
+<pre><code class="language-bash">/Applications/SSHAdmin.app/Contents/MacOS/sshadmin install-cli --json
+/Applications/SSHAdmin.app/Contents/MacOS/sshadmin install-cli --dir "$HOME/bin" --json
+/Applications/SSHAdmin.app/Contents/MacOS/sshadmin uninstall-cli
+</code></pre>
+<p>Use the same custom directory when uninstalling. Installation will not overwrite another program's link/file; removal only affects a link pointing to this application. Removing the link does not remove the app, configuration, credentials or remote data.</p>
+<h3>7.13 Help</h3>
+<pre><code class="language-bash">sshadmin --help
+sshadmin help exec
+sshadmin exec --help
+sshadmin ssh --help
+sshadmin credential --help
+sshadmin credential set --help
+sshadmin --version
+</code></pre>
+<p><code>sshadmin ssh -V</code> reports system SSH's version. <code>sshadmin --version</code> reports SSHAdmin's version.</p>
+<a id="ai"></a>
+<h2>8. Connect your local AI</h2>
+<h3>8.1 Preparation</h3>
+<p>Configure the host, save any password/passphrase, verify its fingerprint through <strong>Test and trust</strong>, complete Keychain authorization, then enable per-host AI credential use. Install the command from <strong>AI integration</strong> and copy that page's instructions to an AI capable of executing local terminal commands.</p>
+<p>No global AI settings are modified automatically. This is not an MCP server. A cloud AI cannot automatically read this Mac's local configuration or Keychain. The GUI need not stay open for CLI use.</p>
+<h3>8.2 Instructions you can share</h3>
+<pre><code class="language-text">SSHAdmin is installed locally. Use sshadmin, or its absolute path:
+/Applications/SSHAdmin.app/Contents/MacOS/sshadmin
+First run list --json to confirm the exact managed alias.
+Use sshadmin ssh &lt;alias&gt; '&lt;authorized command&gt;' for interactive work,
+live output, pipes or long tasks. Use exec --json for structured results.
+Never request, read or export saved passwords or put them in arguments,
+scripts or logs. Do not change the destination, user, port, jump host or
+trust records. Stop and explain Keychain, fingerprint, OTP or credential
+errors. After timeout or disconnection, inspect remote state before
+replaying a command. For tasks that must outlive the client, start inside
+remote tmux. Stay within the user's authorization; ask before new
+destructive operations.
+</code></pre>
+<p>For example: “Use SSHAdmin to connect to dev-server and only check hostname and disk usage.” No password needs to be pasted into chat.</p>
+<h3>8.3 Common questions</h3>
+<p>The AI uses its own execution terminal, not the GUI terminal. SSH login and remote sudo are separate authentication steps; a saved SSH password does not automatically answer sudo or arbitrary application prompts. Calling tools may impose their own sandbox, approval, runtime or output restrictions.</p>
+<a id="recipes"></a>
+<h2>9. Common recipes</h2>
+<h3>9.1 Read-only server checks</h3>
+<pre><code class="language-bash">sshadmin ssh dev-server 'hostname; id -un; uname -sr; uptime; df -h'
+</code></pre>
+<p>These run remotely and assume common Linux tools are available.</p>
+<h3>9.2 Follow logs</h3>
+<pre><code class="language-bash">sshadmin ssh dev-server 'tail -f /path/to/app.log'
+</code></pre>
+<p>Use an authorized real log path. Press <code>Ctrl+C</code> to stop. Continuous output suits the launcher rather than bounded exec.</p>
+<h3>9.3 Forward a local-only web service</h3>
+<pre><code class="language-bash">sshadmin ssh -N -o ExitOnForwardFailure=yes -L 127.0.0.1:8080:127.0.0.1:3000 dev-server
+</code></pre>
+<p>Keep it running and visit <code>http://127.0.0.1:8080</code> on your Mac. This binds only to Mac loopback and forwards to the server's local port 3000. Use another local port if 8080 is busy. The server must allow forwarding and its service must already run. Stop with <code>Ctrl+C</code>.</p>
+<h3>9.4 Run a long task</h3>
+<pre><code class="language-bash">sshadmin ssh -t dev-server 'tmux new-session -s work'
+</code></pre>
+<p>Start your task inside. Detach with <code>Ctrl+B</code>, then <code>D</code>. Return using <code>sshadmin connect dev-server --tmux work</code>. tmux preserves a running environment, not necessarily a complete durable task log; configure task logging separately when needed.</p>
+<h3>9.5 File transfer</h3>
+<p>There is no built-in SFTP browser. Tools needing a remote shell can use the launcher, for example this rsync dry run (rsync must exist on both machines):</p>
+<pre><code class="language-bash">rsync -avn -e 'sshadmin ssh' ./local-dir/ dev-server:/path/to/remote-dir/
+</code></pre>
+<p><code>-n</code> previews without transfer. Actual transfer writes the destination, so verify paths first. <code>scp -S</code> and <code>sftp -S</code> need a single executable path, not <code>sshadmin ssh</code> plus a subcommand. Ordinary key-based scp/sftp remain available but do not automatically retrieve SSHAdmin's saved passwords.</p>
+<a id="settings"></a>
+<h2>10. Settings, backups and data</h2>
+<h3>10.1 Preferences</h3>
+<div class="table-wrap"><table><thead><tr><th>Setting</th><th>Values / effect</th></tr></thead><tbody><tr><td>Language</td><td>Follow system, 简体中文 or English; remembered across launches</td></tr><tr><td>Theme</td><td>System, light or dark</td></tr><tr><td>Terminal font size</td><td>9–28</td></tr><tr><td>Font family</td><td>Available local fonts, as a family list</td></tr><tr><td>Scrollback</td><td>1,000–100,000 lines; default 10,000</td></tr><tr><td>Confirm multiline paste</td><td>Confirm potentially executable pasted lines</td></tr><tr><td>Cursor blink</td><td>Terminal appearance</td></tr><tr><td>Terminal history</td><td>Off by default; optional read-only screen history</td></tr><tr><td>Backups</td><td>Inspect and preview configuration restoration</td></tr><tr><td>Diagnostics</td><td>Redacted export for troubleshooting</td></tr><tr><td>About</td><td>App version, system OpenSSH and actual paths</td></tr></tbody></table></div>
+<p>Language follows macOS preferred languages when set to system; the first supported Chinese/English preference is used, with English as fallback. Explicit selection wins and is saved. System language changes are rechecked when the app regains focus. Host data and terminal output retain their original language. The website follows browser language on automatic entry and offers an explicit language switch; it does not read private app preferences.</p>
+<h3>10.2 Backup and restore</h3>
+<p>App-managed configuration changes keep the latest <strong>20 backups</strong>. In Settings, choose a backup, <strong>Preview restore</strong>, inspect the diff and restore. This changes local SSH configuration. It is not a full backup of Keychain, private files, running processes or history. External manual edits do not necessarily create SSHAdmin backups.</p>
+<p><strong>Edit configuration text…</strong> supports complex SSH directives with validation, diff preview and backup. Prefer the host form unless you understand SSH configuration syntax.</p>
+<h3>10.3 Default data locations</h3>
+<div class="table-wrap"><table><thead><tr><th>Data</th><th>Location</th></tr></thead><tbody><tr><td>App</td><td><code>/Applications/SSHAdmin.app</code></td></tr><tr><td>CLI executable</td><td><code>/Applications/SSHAdmin.app/Contents/MacOS/sshadmin</code></td></tr><tr><td>Command link</td><td><code>~/.local/bin/sshadmin</code></td></tr><tr><td>Main / managed SSH configuration</td><td><code>~/.ssh/config</code>, <code>~/.ssh/sshadmin.conf</code></td></tr><tr><td>Trusted host keys</td><td>Usually <code>~/.ssh/known_hosts</code>, subject to SSH configuration</td></tr><tr><td>Metadata, state and preferences</td><td><code>~/Library/Application Support/SSHAdmin/sshadmin.db</code></td></tr><tr><td>Configuration backups</td><td><code>~/Library/Application Support/SSHAdmin/backups/</code></td></tr><tr><td>Terminal history</td><td><code>~/Library/Application Support/SSHAdmin/history/</code></td></tr><tr><td>Passwords/passphrases</td><td>macOS Keychain, service <code>com.sshadmin.credentials</code></td></tr><tr><td>Private keys</td><td>Their original selected paths</td></tr></tbody></table></div>
+<p>Saved credentials are not returned as terminal output by the authentication bridge. Your own commands can still print sensitive data, which optional history could retain.</p>
+<h3>10.4 Diagnostics</h3>
+<p>Choose <strong>Settings → Export diagnostics…</strong>. It exports versions, system information, counts and anonymous status/problem codes, excluding passwords, aliases, addresses, usernames, private key paths, notes and terminal contents. <code>show --json</code> is different and contains connection information.</p>
+<a id="troubleshooting"></a>
+<h2>11. Troubleshooting</h2>
+<h3>11.1 Start locally</h3>
+<pre><code class="language-bash">command -v sshadmin
+sshadmin show dev-server
+sshadmin doctor dev-server
+</code></pre>
+<p>Add <code>--connect</code> only when you want a real connection. Keep the error code. Do not repeatedly retry authentication errors or commands with uncertain results.</p>
+<h3>11.2 Error reference</h3>
+<div class="table-wrap"><table><thead><tr><th>Symptom / code</th><th>Action</th></tr></thead><tbody><tr><td><code>command not found</code></td><td>Install the link and check PATH, or use the absolute path</td></tr><tr><td><code>HOST_NOT_FOUND</code></td><td>Run list and use the exact alias</td></tr><tr><td><code>HOST_AMBIGUOUS</code></td><td>Inspect duplicate/complex definitions and their source files</td></tr><tr><td><code>CREDENTIAL_MISSING</code></td><td>Save the required password and verify</td></tr><tr><td><code>CREDENTIAL_BINDING_CHANGED</code></td><td>Verify the destination, account, port, jump host and trust scope, then Test and trust</td></tr><tr><td><code>AI_CREDENTIAL_USE_DISABLED</code></td><td>Adjust the host's switch according to your intent</td></tr><tr><td><code>KEYCHAIN_INTERACTION_REQUIRED</code></td><td>Unlock/authorize interactively in the GUI or human trust/connect flow</td></tr><tr><td><code>KEYCHAIN_ACCESS_DENIED</code></td><td>Check the application's Keychain authorization</td></tr><tr><td><code>HOST_KEY_UNTRUSTED</code></td><td>Compare the fingerprint with a trusted source</td></tr><tr><td><code>HOST_KEY_CHANGED</code></td><td>Investigate a replacement/reinstall and verify the actual fingerprint; do not bypass checking</td></tr><tr><td><code>AUTH_FAILED</code>, <code>Permission denied</code></td><td>Check user, credential, key and server policy</td></tr><tr><td><code>AUTH_INTERACTION_REQUIRED</code></td><td>Complete OTP, token, jump-host or other human steps interactively</td></tr><tr><td><code>KEY_FILE_MISSING</code></td><td>Reselect the moved/missing private key</td></tr><tr><td><code>KEY_PERMISSION_INVALID</code></td><td>Verify the file and correct overly broad permissions</td></tr><tr><td><code>AGENT_UNAVAILABLE</code></td><td>Check agent access and loaded keys in the calling process</td></tr><tr><td><code>AUTH_POLICY_CONFLICT</code>, <code>EXEC_CONFIG_CONFLICT</code></td><td>Review effective SSH options against the requested mode</td></tr><tr><td><code>CONNECTION_TIMEOUT</code></td><td>Check address, port, VPN, routing, firewall and SSH service</td></tr><tr><td><code>CONNECTION_FAILED</code>, <code>No route to host</code></td><td>Check the network/server and macOS Local Network permission for LAN hosts</td></tr><tr><td><code>EXEC_TIMEOUT</code>, <code>EXEC_CANCELLED</code>, <code>OUTPUT_LIMIT_EXCEEDED</code></td><td>Inspect remote task state before retrying; use launcher/tmux for ongoing work</td></tr><tr><td><code>SSH_OR_REMOTE_255</code></td><td>Inspect stderr and remote state; do not assume the command never ran</td></tr><tr><td><code>REMOTE_COMMAND_FAILED</code></td><td>The remote command finished nonzero; inspect its output and meaning</td></tr><tr><td>No tmux sessions / server not running</td><td>Often simply no existing sessions; check the host, user and process</td></tr><tr><td>tmux missing</td><td>Install remotely through your normal authorized procedure</td></tr><tr><td>Old screen without live input</td><td>May be read-only history or a restored disconnected pane; connect or reattach</td></tr></tbody></table></div>
+<h3>11.3 macOS Local Network permission</h3>
+<p>If ordinary Terminal connects but SSHAdmin does not, check <strong>System Settings → Privacy &amp; Security → Local Network</strong> for SSHAdmin. If another terminal or AI app launches the connection, that application may need permission too. Authorizing SSHAdmin does not authorize every caller, and a real network failure may produce the same symptom.</p>
+<h3>11.4 AI fails while your terminal works</h3>
+<p>Compare PATH, Keychain authorization, SSH Agent environment, Local Network permission, and the AI tool's sandbox/approval rules. Identify whether an error came from SSHAdmin, OpenSSH or the calling tool. A command blocked before execution is not evidence of a server connection failure.</p>
+<h3>11.5 Login and remote privileges</h3>
+<p>SSH login permission differs from remote file access and sudo privileges. SSHAdmin does not elevate remote accounts or answer arbitrary password prompts after login.</p>
+<a id="maintenance"></a>
+<h2>12. Update, migrate and uninstall</h2>
+<h3>12.1 System OpenSSH</h3>
+<p>About reports <code>/usr/bin/ssh -V</code>. SSHAdmin uses that fixed system path. A macOS update can update SSH; installing Homebrew SSH does not automatically switch the path. Configuration and Keychain items are stored separately, but compatibility with older servers should still be verified after updates.</p>
+<h3>12.2 Update the application</h3>
+<p>Replace the app at its original installation path, then check version, host list and a connection. A changed code-signing identity may require renewed Keychain authorization. Report build date and symptoms as well as the version when diagnosing locally repackaged builds.</p>
+<h3>12.3 Move to another Mac</h3>
+<p>There is no one-click migration or cloud sync. Account separately for SSH/Include files, original private keys, app metadata, Keychain migration/authorization and PATH. Changed paths need updating. Keep the old environment until you verify the new one; ordinary text backups are not a substitute for secure credential migration.</p>
+<h3>12.4 Remove only what you intend</h3>
+<div class="table-wrap"><table><thead><tr><th>Goal</th><th>Action</th></tr></thead><tbody><tr><td>Remove the short command</td><td>uninstall-cli; other data remains</td></tr><tr><td>Remove one connection</td><td>Delete it on Hosts</td></tr><tr><td>Remove a password</td><td>Unlink and delete through Credentials or its CLI</td></tr><tr><td>Stop saving terminal screens</td><td>Disable history in Settings</td></tr><tr><td>Remove the app</td><td>Delete SSHAdmin.app; stored configuration and Keychain items are not automatically removed</td></tr></tbody></table></div>
+<p>Do not delete your entire <code>~/.ssh</code> directory as an uninstall step; other tools may depend on it.</p>
+<h3>12.5 Current boundaries</h3>
+<p>SSHAdmin provides local host management, system SSH, password/key support, split terminals, remote tmux, a local AI CLI, backups and optional screen history. It does not currently provide multi-user permissions, cloud sync, a web admin console, an SFTP browser, broadcast commands, MCP, automatic remote software/public-key installation, or process recovery after server restart.</p>
+<p>Apple Silicon is the verified package platform. Public builds are locally signed and not notarized; there are no current Intel, Windows or Linux application packages. The interface supports Chinese and English; shell programs and macOS-controlled dialogs use their own language rules.</p>
+<a id="references"></a>
+<h2>13. Verification and further reading</h2>
+<p>This guide describes the command contract and implementation, including exact credential subcommands, exec's 60-second default and 8 MiB cap, tmux attachment, terminal shortcuts, history limits, CLI installation and language preference. Read examples before running them: commands that change credentials, restore configuration, end sessions or transfer files require the corresponding intent and authorization.</p>
+<p>Use the repository's README and bilingual acceptance report for build-specific test evidence. Developer documentation and application source remain private; the public product repository contains website assets, guides and released binaries only. Report issues through the public repository after removing sensitive values. Use the chapter navigation or <code>⌘F</code> to find a feature or error code.</p></article><div class="end">SSHAdmin offline guide. Reading requires no connection or login. External links need the internet. Example commands do not run automatically.</div></main>
+<script>for(const pre of document.querySelectorAll('pre')){const code=pre.querySelector('code');if(!code)continue;const button=document.createElement('button');button.textContent='Copy';button.setAttribute('aria-label','Copy this example');button.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(code.textContent);button.textContent='Copied';}catch{const range=document.createRange();range.selectNodeContents(code);const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);button.textContent='Selected; copy manually';}setTimeout(()=>button.textContent='Copy',1800)});pre.append(button)}</script></body></html>

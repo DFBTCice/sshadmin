@@ -9,3 +9,8 @@ crates/
 artifacts/
 *.dmg
 *.zip
+
+# Versioned distributable builds and offline guides for the product website.
+!docs/downloads/SSHAdmin-0.2.0-macos-arm64.dmg
+!docs/downloads/SSHAdmin-0.2.0-macos-arm64.zip
+!docs/downloads/SSHAdmin-0.2.0-guides.zip
