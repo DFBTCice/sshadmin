@@ -233,3 +233,6 @@ code { font-family: var(--mono); font-size: 0.9em; padding: 2px 7px; border-radi
   .js .reveal { opacity: 1; transform: none; transition: none; }
   .win { transform: none; }
 }
+
+.language-switch{display:flex;align-items:center;gap:5px;flex-wrap:wrap;font-size:12px;line-height:1.4}.language-switch a{padding:6px 8px;border:1px solid transparent;border-radius:6px;color:inherit;text-decoration:none;white-space:nowrap}.language-switch a[aria-current=page]{border-color:#617aa6;background:rgba(103,142,210,.13)}.language-switch a:focus-visible{outline:2px solid #7ba4ff;outline-offset:2px}html[lang=en] .nav .links{gap:18px}html[lang=en] .hero h1{font-size:clamp(46px,7vw,92px);letter-spacing:-3px}html[lang=en] .vlink{line-height:1.8}html[lang=en] .fact p{line-height:1.65}@media(max-width:1100px){.nav .links{display:none}.nav-in{gap:12px}}@media(max-width:600px){.nav-in{flex-wrap:wrap;padding-block:10px}.nav .logo{flex:1}.nav .btn{font-size:11px;padding:8px}.nav .language-switch{order:3;width:100%;justify-content:center}.hero{padding-top:160px}html[lang=en] .hero h1{letter-spacing:-1px}.language-switch{font-size:12px}}
+@media(max-width:600px){.nav{height:auto}.nav-in{height:auto;min-height:68px}}

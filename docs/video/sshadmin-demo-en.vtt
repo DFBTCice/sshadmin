@@ -1,0 +1,33 @@
+WEBVTT
+
+1
+00:00:00.120 --> 00:00:04.200
+Make server management easier. This guide uses sample data.
+
+2
+00:00:04.750 --> 00:00:25.870
+Start by adding a server. Enter its address, username and port, then choose an alias you can remember. Preview the changes before saving. The app creates a backup and rolls back if a write fails. Your server then appears in the host list.
+
+3
+00:00:26.509 --> 00:00:42.749
+To sign in with a private key, select your existing key file. The app saves its path without copying or exporting the key. If the key has a passphrase, macOS Keychain stores it. Review the preview, then apply the changes.
+
+4
+00:00:43.917 --> 00:01:04.157
+You can also sign in with a password. Keychain stores it, rather than plain text in configuration, databases or logs. On the first connection, compare the server fingerprint with a trusted source before accepting it. After verification and your approval, your AI can use this host.
+
+5
+00:01:18.449 --> 00:01:39.089
+You control how credentials are used. If the destination changes, automatic use pauses until you verify it again. A saved password is submitted at most once per connection. The app handles authentication without returning the password to your AI. Each host has its own authorization switch.
+
+6
+00:01:39.639 --> 00:01:57.159
+Open a host to use its terminal. The shortcuts on screen let you split panes and create tabs. Before starting a long task, enable remote session management and run the task inside a session. If the server and session keep running, you can close the app and reconnect later.
+
+7
+00:02:07.201 --> 00:02:24.801
+First verify the host and allow credential use. Then install the app command and copy the instructions to your AI. The instructions contain no passwords. Your AI uses that command in its own terminal. The pass-through launcher adds no limit to execution time or output.
+
+8
+00:02:35.712 --> 00:02:48.592
+You can disable future credential use for each host. Existing connections and tasks keep running. Easier connections, with clearer control.

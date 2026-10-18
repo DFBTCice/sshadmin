@@ -1,10 +1,12 @@
 # SSHAdmin
 
+[简体中文](README.md) · [English](README.en.md)
+
 **管服务器，人和 AI 都放心。**
 
 SSHAdmin 是面向 Apple Silicon Mac 的 SSH 管理工具，把主机、密钥、密码、多标签分屏终端和 tmux 收进一个桌面应用。沿用系统 OpenSSH 和已有的 `~/.ssh/config`，密码保存在 macOS 钥匙串；本机 AI 可以通过命令行使用已授权的连接。
 
-[访问官网](https://dfbtcice.github.io/sshadmin/) · [下载最新版本](https://github.com/DFBTCice/sshadmin/releases/latest) · [使用手册](https://dfbtcice.github.io/sshadmin/manual.html) · [反馈问题](https://github.com/DFBTCice/sshadmin/issues)
+[访问官网](https://dfbtcice.github.io/sshadmin/) · [下载与安装](#下载与安装) · [使用手册](https://dfbtcice.github.io/sshadmin/zh/manual.html) · [反馈问题](https://github.com/DFBTCice/sshadmin/issues)
 
 > 本仓库用于产品展示、使用文档和成品发布。**桌面应用源码暂不公开。** 仓库中的 HTML、CSS 和 JavaScript 用于产品官网。
 
@@ -21,18 +23,20 @@ SSHAdmin 是面向 Apple Silicon Mac 的 SSH 管理工具，把主机、密钥�
 
 ## 下载与安装
 
-当前版本 **0.1.0**，适用于 **Apple Silicon（M 系列）Mac**，要求 **macOS 12 及以上**。目前仅 Apple Silicon 经过验证，未提供 Intel、Windows 或 Linux 安装包。
+当前版本 **0.2.0**，适用于 **Apple Silicon（M 系列）Mac**，要求 **macOS 12 及以上**。一个安装包包含中英文，可在设置中选择跟随系统、简体中文或 English；切换不会断开正在使用的终端。
 
 | 文件 | 下载 |
 | --- | --- |
-| Mac 安装包（DMG，约 5.7 MiB） | [SSHAdmin-0.1.0-macos-arm64.dmg](https://github.com/DFBTCice/sshadmin/releases/download/v0.1.0/SSHAdmin-0.1.0-macos-arm64.dmg) |
-| Mac 压缩包（ZIP，约 5.0 MiB） | [SSHAdmin-0.1.0-macos-arm64.zip](https://github.com/DFBTCice/sshadmin/releases/download/v0.1.0/SSHAdmin-0.1.0-macos-arm64.zip) |
-| 离线使用手册 | [HTML](https://github.com/DFBTCice/sshadmin/releases/download/v0.1.0/SSHAdmin-0.1.0-manual.html) / [Markdown](https://github.com/DFBTCice/sshadmin/releases/download/v0.1.0/SSHAdmin-0.1.0-manual.md) |
-| 官网配音演示（MP4，约 25.4 MiB） | [下载视频](https://github.com/DFBTCice/sshadmin/releases/download/v0.1.0/SSHAdmin-0.1.0-demo.mp4) / [在线播放](https://dfbtcice.github.io/sshadmin/#film) |
-| 高清配音使用动画（MP4，约 96.7 MiB） | [下载视频](https://github.com/DFBTCice/sshadmin/releases/download/v0.1.0/SSHAdmin-0.1.0-tutorial.mp4) |
-| SHA-256 校验值 | [SHA256SUMS](https://github.com/DFBTCice/sshadmin/releases/download/v0.1.0/SHA256SUMS) |
+| Mac 安装包（DMG，约 6.3 MiB） | [SSHAdmin-0.2.0-macos-arm64.dmg](docs/downloads/SSHAdmin-0.2.0-macos-arm64.dmg) |
+| Mac 压缩包（ZIP，约 5.6 MiB） | [SSHAdmin-0.2.0-macos-arm64.zip](docs/downloads/SSHAdmin-0.2.0-macos-arm64.zip) |
+| 双语离线手册 | [下载 ZIP](docs/downloads/SSHAdmin-0.2.0-guides.zip) · [中文在线手册](https://dfbtcice.github.io/sshadmin/zh/manual.html) · [English guide](https://dfbtcice.github.io/sshadmin/en/manual.html) |
+| 中文配音演示（1080p） | [下载 MP4](docs/video/sshadmin-demo-zh-CN.mp4) |
+| 英文配音演示（1080p） | [Download MP4](docs/video/sshadmin-demo-en.mp4) |
+| SHA-256 校验值 | [SHA256SUMS](docs/downloads/SHA256SUMS) |
 
-1. 下载 DMG 或 ZIP，把 `SSHAdmin.app` 放入 `/Applications`。
+当前版本和此前版本的附件可从 [GitHub Releases](https://github.com/DFBTCice/sshadmin/releases) 获取。
+
+1. 下载 DMG 或 ZIP；更新前保存当前工作并完全退出旧版，再把 `SSHAdmin.app` 放入 `/Applications` 并替换旧版。
 2. 当前版本为**本地签名、未经 Apple 公证**。首次打开如果被系统拦截，请按 macOS 提示到「系统设置 → 隐私与安全性」选择“仍要打开”。
 3. 启动后会识别已有 SSH 配置。首次识别不会自动连接服务器或改写配置。
 4. 在主机详情中完成“测试并信任”，核对服务器指纹后再使用保存的凭据。
@@ -40,10 +44,14 @@ SSHAdmin 是面向 Apple Silicon Mac 的 SSH 管理工具，把主机、密钥�
 下载 `SHA256SUMS` 后，可在安装包所在目录核对所选文件，例如：
 
 ```bash
-shasum -a 256 SSHAdmin-0.1.0-macos-arm64.dmg
+shasum -a 256 SSHAdmin-0.2.0-macos-arm64.dmg
 ```
 
 将输出与 `SHA256SUMS` 中同名文件的记录比较。
+
+## 语言与官网
+
+语言入口为 **设置 → 外观与终端 → 语言**，可选择跟随系统、简体中文或 English，选择会跨重启保存。官网按浏览器语言自动进入，也可以手动选择中英文并记住选择。介绍、完整手册、界面截图、字幕和配音视频均有对应版本。主机别名、备注、SSH 配置与远端命令输出保留原文。CLI 可在子命令前添加 `--lang en` 或 `--lang zh-CN`，JSON 字段和错误码保持稳定。
 
 ## 让本机 AI 使用
 
@@ -55,7 +63,7 @@ sshadmin ssh dev-server 'hostname; df -h'
 sshadmin exec dev-server --command 'uname -a' --json --timeout 30
 ```
 
-`dev-server` 是示例别名，请替换为自己的主机名。CLI 可以独立于 GUI 运行。更多命令和安全边界见[使用手册](https://dfbtcice.github.io/sshadmin/manual.html#ai)。
+`dev-server` 是示例别名，请替换为自己的主机名。CLI 可以独立于 GUI 运行。更多命令和安全边界见[使用手册](https://dfbtcice.github.io/sshadmin/zh/manual.html#ai)。
 
 ## 当前边界与反馈
 
