@@ -35,9 +35,9 @@ Version **0.2.0** requires **macOS 12 or later on Apple Silicon (M series)**. Th
 | Chinese narrated walkthrough (1080p) | [MP4](docs/video/sshadmin-demo-zh-CN.mp4) |
 | SHA-256 checksums | [SHA256SUMS](docs/downloads/SHA256SUMS) |
 
-Earlier versions remain available in [GitHub Releases](https://github.com/DFBTCice/sshadmin/releases). This branch prepares 0.2.0 for review; the live site updates after approval and merge.
+The current version and earlier release assets are available in [GitHub Releases](https://github.com/DFBTCice/sshadmin/releases).
 
-1. Download DMG or ZIP and put `SSHAdmin.app` into `/Applications`.
+1. Download DMG or ZIP. When upgrading, save your work and fully quit the old version, then put `SSHAdmin.app` into `/Applications` and replace the old app.
 2. The build is locally signed and **not notarized by Apple**. If macOS blocks the first launch, follow its prompt in **System Settings → Privacy & Security → Open Anyway**.
 3. The app discovers existing configuration without automatically connecting or rewriting it.
 4. Run **Test and trust** in host details and verify the server fingerprint before using saved credentials.
@@ -50,7 +50,7 @@ shasum -a 256 SSHAdmin-0.2.0-macos-arm64.dmg
 
 ## Language
 
-The app remembers its language preference. The website uses browser language on automatic entry and remembers a manual choice; explicit `/zh/` and `/en/` URLs keep their selected language. Both versions have a complete guide, localized screenshots, captions and narrated video. Host aliases, notes, configuration, JSON field names, error codes and remote output retain their original content.
+Choose Follow system, 简体中文 or English in **Settings → Appearance and terminal → Language**. The app remembers this preference across restarts. The website uses browser language on automatic entry and remembers a manual choice; explicit `/zh/` and `/en/` URLs keep their selected language. Both versions have a complete guide, localized screenshots, captions and narrated video. Host aliases, notes, configuration, JSON field names, error codes and remote output retain their original content.
 
 For one CLI invocation, put `--lang en`, `--lang zh-CN` or `--lang system` **before** the subcommand. Arguments after the `ssh` subcommand belong to OpenSSH and pass through unchanged.
 
